@@ -14,13 +14,13 @@ const UserDashBoard = () => {
     useEffect(() => {
         getAllStocks().then((stocks) => setStocks(stocks)
         ).catch(err => console.log(err))
-    })
+    }, [])
 
     const makeNavBar = () =>
         <nav className="navbar navbar-dark bg-dark by-5">
             <a className="navbar-brand text-uppercase">{user.displayName}</a>
             <form className="form-inline">
-                <button className="btn btn-outline-secondary my-2 my-sm-0 text-white btn-lg" onClick={() => {
+                <button className="btn btn-outline-secondary my-2 my-sm-0 text-white btn-lg align-right" onClick={() => {
                     auth.signOut().then(() => <Redirect to="/" />
                     ).catch(err => console.log(err)
                     )
