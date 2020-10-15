@@ -3,7 +3,6 @@ import { useAuthState } from 'react-firebase-hooks/auth'
 import { Redirect, Link } from 'react-router-dom';
 import auth from '../config/auth'
 import { getAllStocks, getAllWatchList } from '../config/UserAPICall';
-import getStocks from '../config/getStocks'
 
 const UserDashBoard = () => {
     // this is user dashboard, that i need to make
@@ -13,7 +12,7 @@ const UserDashBoard = () => {
     const [stocks, setStocks] = useState([])
 
     useEffect(() => {
-        getStocks().then((stocks) => setStocks(stocks)
+        getAllStocks().then((stocks) => setStocks(stocks)
         ).catch(err => console.log(err))
     })
 
@@ -37,8 +36,9 @@ const UserDashBoard = () => {
         </nav>
 
     const changeWatchList = wL => event => {
-        const stocks = getAllStocks(user, event.target.value);
-        setStocks(stocks);
+        // const stocks = getAllStocks(user, event.target.value);
+        // setStocks(stocks);
+        console.log("invoked");
     }
 
 
@@ -57,7 +57,7 @@ const UserDashBoard = () => {
                             </a>
                             <div className="dropdown-menu">
                                 {
-                                    watchLists.map((watchList, index) => <button className="dropdown-item " type="button" onClick={changeWatchList({ watchList })}>{watchList}</button>)
+                                    watchLists.map((watchList, index) => <button className="dropdown-item " type="button" onClick={changeWatchList}>{watchList}</button>)
                                 }
                             </div>
                         </>
