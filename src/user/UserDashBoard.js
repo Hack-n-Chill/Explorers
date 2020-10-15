@@ -2,30 +2,21 @@ import React, { useState } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { Redirect, Link } from 'react-router-dom';
 import auth from '../config/auth'
-import { getAllWatchList } from '../config/UserAPICall';
+import { getAllStocks, getAllWatchList } from '../config/UserAPICall';
 
 const UserDashBoard = () => {
     // this is user dashboard, that i need to make
     // i am considering that this user is an JSON object; which is being certain properties.
     const [user] = useAuthState(auth);
-    const [success, setSuccess] = useState(false);
-    const performRedirect = () => {
-        if (success) {
-            return <Redirect to="/" />
-        }
-    }
 
-    const [stocks, setStocks] = useState([{
-        name: "",
-        price : 0,
-    }])
+    const [stocks, setStocks] = useState([])
 
     const makeNavBar = () =>
         <nav className="navbar navbar-dark bg-dark by-5">
             <a className="navbar-brand text-uppercase">{user.displayName}</a>
             <form className="form-inline">
                 <button className="btn btn-outline-secondary my-2 my-sm-0 text-white btn-lg" onClick={() => {
-                    auth.signOut().then(() => setSuccess(true)
+                    auth.signOut().then(() => <Redirect to="/" />
                     ).catch(err => console.log(err)
                     )
                 }}>LogOut</button>
@@ -39,17 +30,13 @@ const UserDashBoard = () => {
             </form>
         </nav>
 
-    const watchLists = () => {
-
-    }
-
     const changeWatchList = wL => event => {
-        const stocks = getAllStocks(wl);
+        const stocks = getAllStocks(user, event.target.value);
         setStocks(stocks);
     }
-    
 
-    const listOfWatchLists = () => {
+
+    const watchLists = () => {
         const watchLists = getAllWatchList(user); // an api call to the server to fetch all the eatchLists of tht secific user
         return (
             <div>
@@ -64,7 +51,7 @@ const UserDashBoard = () => {
                             </a>
                             <div className="dropdown-menu">
                                 {
-                                    watchLists.map((watchList, index) => <button className="dropdown-item " type="button" onClick={changeWatchList({watchList})}>{watchList}</button>)
+                                    watchLists.map((watchList, index) => <button className="dropdown-item " type="button" onClick={changeWatchList({ watchList })}>{watchList}</button>)
                                 }
                             </div>
                         </>
@@ -73,9 +60,29 @@ const UserDashBoard = () => {
         )
     }
 
+    const listOfStocks = () => <>
+        {
+            stocks.length === 0 ?
+                <>
+                    <div className="row">
+                        This WatchList has no stocks Listed Yet.
+                    </div>
+                    <Link to="/"><div className="row">Add A new Stock</div></Link>
+                </> :
+                stocks.map((stock, index) =>
+
+                    <div className="row">
+                        <div className="col-6">{stock.name}</div>
+                        <div className="col-6">{stock.price}</div>
+                    </div>
+
+                )
+        }
+    </>
+
+
     return (
         <>
-            {performRedirect()}
             <div className="row">
                 {makeNavBar()}
             </div>
