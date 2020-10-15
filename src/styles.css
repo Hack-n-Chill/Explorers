@@ -6,5 +6,23 @@
 }
 
 body{
-    background-color: #343a40;
+    background-color: #fff;
+}
+
+.navbar{
+    background-color: transparent;
+}
+
+.navbar-elements{
+    opacity: 0.6;
+}
+.navbar-elements:hover{
+    opacity: 1;
+}
+.navbar-elements:active{
+    opacity: 1;
+}
+
+.navbar-dark{
+    background-color: #20232a;
 }

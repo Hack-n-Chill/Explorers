@@ -3,6 +3,8 @@ import { useAuthState } from 'react-firebase-hooks/auth'
 import { Redirect, Link } from 'react-router-dom';
 import auth from '../config/auth'
 import { getAllStocks, getAllWatchList } from '../config/UserAPICall';
+import ListOfStocks from '../Core/ListOfStocks';
+import NavBar from '../Core/NavBar';
 
 const UserDashBoard = () => {
     // this is user dashboard, that i need to make
@@ -14,7 +16,7 @@ const UserDashBoard = () => {
     useEffect(() => {
         getAllStocks().then((stocks) => setStocks(stocks)
         ).catch(err => console.log(err))
-    }, [])
+    }, )
 
     const makeNavBar = () =>
         <nav className="navbar navbar-dark bg-dark by-5">
@@ -101,15 +103,14 @@ const UserDashBoard = () => {
 
     return (
         <>
-            <div className="row">
-                {makeNavBar()}
-            </div>
+            <NavBar />
             <div className="row by-5 my-5 py-5">
                 <div className="col-3 ">
                     {watchLists()}
                 </div>
                 <div className="col-9">
-                    {listOfStocks()}
+                    {/* {listOfStocks()} */}
+                    <ListOfStocks className="mr-3" stockArray={stocks}/>
                 </div>
             </div>
         </>
