@@ -64,13 +64,12 @@ const UserDashBoard = () => {
         {
             stocks.length === 0 ?
                 <>
-                    <div className="row">
+                    <div className="row text-white">
                         This WatchList has no stocks Listed Yet.
                     </div>
-                    <Link to="/"><div className="row">Add A new Stock</div></Link>
+                    <Link to="/"><div className="row btn btn-light">Add A new Stock</div></Link>
                 </> :
                 stocks.map((stock, index) =>
-
                     <div className="row">
                         <div className="col-6">{stock.name}</div>
                         <div className="col-6">{stock.price}</div>
@@ -86,7 +85,7 @@ const UserDashBoard = () => {
             <div className="row">
                 {makeNavBar()}
             </div>
-            <div className="row">
+            <div className="row by-5 my-5 py-5">
                 <div className="col-3 ">
                     {watchLists()}
                 </div>
