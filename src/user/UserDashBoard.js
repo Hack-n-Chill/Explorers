@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { Redirect, Link } from 'react-router-dom';
 import auth from '../config/auth'
 import { getAllStocks, getAllWatchList } from '../config/UserAPICall';
+import getStocks from '../config/getStocks'
 
 const UserDashBoard = () => {
     // this is user dashboard, that i need to make
@@ -10,6 +11,11 @@ const UserDashBoard = () => {
     const [user] = useAuthState(auth);
 
     const [stocks, setStocks] = useState([])
+
+    useEffect(() => {
+        getStocks().then((stocks) => setStocks(stocks)
+        ).catch(err => console.log(err))
+    })
 
     const makeNavBar = () =>
         <nav className="navbar navbar-dark bg-dark by-5">
@@ -69,13 +75,26 @@ const UserDashBoard = () => {
                     </div>
                     <Link to="/"><div className="row btn btn-light">Add A new Stock</div></Link>
                 </> :
-                stocks.map((stock, index) =>
-                    <div className="row">
-                        <div className="col-6">{stock.name}</div>
-                        <div className="col-6">{stock.price}</div>
-                    </div>
+                <div className="text-white">
+                    <table align='center' border='1'>
+                        <thead>
+                            <tr>
+                                <td>Name</td>
+                                <td>Price</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {stocks.map(stock => (
+                                <tr key={stock.name}>
+                                    <td>{stock.name}</td>
+                                    <td>{stock.price}</td>
+                                </tr>
+                            ))
+                            }
+                        </tbody>
+                    </table>
+                </div>
 
-                )
         }
     </>
 
