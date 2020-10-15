@@ -1,6 +1,9 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import SignInImage from '../Assets/google-sign-in.png'
 import Base from '../Core/Base'
+import firebase from 'firebase/app' // here is some issue regarding the imports
+import auth from '../config/auth'
+import { Redirect } from 'react-router-dom'
 
 const SignIn = () => {
     const [values, setValues] = useState({
@@ -69,7 +72,7 @@ const SignIn = () => {
             </div>
         );
     }
-   
+
     const errorMesssage = () => {
         return (
             <div className="row">
@@ -86,12 +89,31 @@ const SignIn = () => {
     };
 
     const signInWithGoogle = () => {
-        
+        console.log("signin with google button pressed");
+        const provider = new firebase.auth.GoogleAuthProvider();
+        auth.signInWithPopup(provider).then(function (result) {
+            // This gives you a Google Access Token. You can use it to access the Google API.
+            var token = result.credential.accessToken;
+            // The signed-in user info.
+            console.log(result.user);
+            // ...
+            setValues({
+                ...values,
+                success: true
+            })
+        });
+    }
+
+    const performRedirect = () => {
+        if (success) {
+            return <Redirect to="/" />
+        }
     }
 
     return (
         <Base title="SignIn Page" description="A page for an existing user to signin">
             {signInForm()}
+            {performRedirect()}
             <div className="row" >
                 <div className="col-md-6 offset-sm-3 text-left">
                     <p className="text-white text-center font-weight-bold">Or</p>
@@ -99,7 +121,7 @@ const SignIn = () => {
             </div>
             <div className="row">
                 <div className="col-md-6 offset-sm-3 text-left">
-                    <button onClick={signInWithGoogle} type="submit">
+                    <button onClick={signInWithGoogle} >
                         <img src={SignInImage} alt="Sign Up with google" height="50" className="bg-dark" />
                     </button>
                 </div>
