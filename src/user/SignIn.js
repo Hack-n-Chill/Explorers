@@ -81,16 +81,19 @@ const SignIn = () => {
     }; */
 
     const signInWithGoogle = () => {
-        console.log("signin with google button pressed");
         const provider = new firebase.auth.GoogleAuthProvider();
         auth.signInWithPopup(provider).then(function (result) {
             // The signed-in user info.
-            console.log(result.user);
+            console.log(result.user.displayName.toString() + " signed in successfully");
             // ...
             setValues({
                 ...values,
                 success: true
             })
+        })
+        .catch(function (error) {
+        // Handle Errors here.
+            alert(error.message);
         });
     }
 

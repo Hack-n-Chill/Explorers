@@ -18,7 +18,20 @@ const SignUp = () => {
     const { name, email, password, success, error } = values; // object destructured
 
     const signUpWithGoogle = () => {
-        console.log("SignUp with Google method invoked, need to write method so that a user can sign up with his/her google account");
+        const provider = new firebase.auth.GoogleAuthProvider();
+        firebase.auth().signInWithPopup(provider).then(function (result) {
+            // The signed-in user info.
+            console.log(result.user.displayName.toString() + " signed up successfully");
+            // ...
+            setValues({
+                ...values,
+                success: true
+            })
+        })
+        .catch(function (error) {
+        // Handle Errors here.
+            alert(error.message);
+        });
     }
 
     const handleChange = name => event => {
@@ -34,7 +47,7 @@ const SignUp = () => {
                 user.updateProfile({
                 displayName: name,
                 })
-                console.log(user.displayName + " signed up & logged in successfully");
+                console.log(name + " signed up & logged in successfully");
                 setValues({
                     ...values,
                     success: true,
@@ -128,7 +141,7 @@ const SignUp = () => {
                 </div>
             </div>
             <div className="row">
-                <div className="col-md-6 offset-sm-3 text-left">
+                <div className="col-md-6 offset-sm-3 text-left" >
                     <button onClick={signUpWithGoogle} type="submit">
                         <img src={SignUpImage} alt="Sign Up with google" height="50" className="bg-white" />
                     </button>
