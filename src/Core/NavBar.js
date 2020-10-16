@@ -2,6 +2,7 @@ import React from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { Link } from 'react-router-dom'
 import auth from '../config/auth'
+import NavBarLogo from '../Assets/logoMainWhite.svg'
 
 const NavBar = () => {
     const [user] = useAuthState(auth)
@@ -11,7 +12,7 @@ const NavBar = () => {
     
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-            <Link to="/" className="navbar-brand font-weight-bold">NavBar LOGO</Link>
+            <Link to="/" className="navbar-brand font-weight-bold"><img src={NavBarLogo} alt="NavBarLogo" height="45" width="45"/></Link>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span className="navbat-toggler-icon"></span></button>
             <div className="collapse navbar-collapse" id="navbarNavDropdown">
                 <div className="navbar-nav mr-auto"></div>

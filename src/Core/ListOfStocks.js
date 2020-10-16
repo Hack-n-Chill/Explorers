@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { Link } from 'react-router-dom';
 import auth from '../config/auth';
 
 const ListOfStocks = ({
@@ -38,7 +39,21 @@ const ListOfStocks = ({
         )
     }
 
+    const [showDropDown, setShowDropDown] = useState(false)
     const [user] = useAuthState(auth)
+    const userPricesToTrigger = stockName =>
+        <div className="btn-group">
+            <button className="btn btn-secondary dropdown-toggle" href="#" type="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                onClick={() => setShowDropDown(!showDropDown)
+                }>
+                {stockName} Triggers
+            </ button>
+        </div>
+
+    const deleteThisStock = (event) => {
+        console.log("delete this stock method is invoked");
+    }
+    
     return (
         <div className={className}>
             {
@@ -55,6 +70,13 @@ const ListOfStocks = ({
                                     <th scope="col ">Current Price</th>
                                     <th scope="col">Previous Price</th>
                                     <th scope="col">Change</th>
+                                    {
+                                        user ? <>
+                                            <th scope="col">Triggers</th>
+                                            <th scope="col">Update</th>
+                                            <th scope="col">Delete</th>
+                                        </> : <></>
+                                    }
                                 </tr>
                             </thead>
                             <tbody>
@@ -64,6 +86,18 @@ const ListOfStocks = ({
                                         <td className="font-weight-bold">{stock.currentPrice}</td>
                                         <td>{stock.previousPrice}</td>
                                         <td>{differenceAndPercentage(stock.currentPrice, stock.previousPrice)}</td>
+                                        {
+                                            user ? <>
+                                                <td scope="col">{userPricesToTrigger(stock.name)}</td>
+                                                <td scope="col">
+                                                    <Link to={`/user/update/${stock.name}/${user.displayName}`} className="btn btn-success">Update</Link></td>
+                                                <td onClick={deleteThisStock}>
+                                                    <span className="btn btn-danger">
+                                                        Delete
+                                                    </span>
+                                                </td>
+                                            </> : <></>
+                                        }
                                     </tr>
                                     )
                                 }

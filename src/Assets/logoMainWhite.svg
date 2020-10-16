@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200" viewBox="0 0 200 200">
+  <defs>
+    <clipPath id="clip-logoMainWhite">
+      <rect width="200" height="200"/>
+    </clipPath>
+  </defs>
+  <g id="logoMainWhite" clip-path="url(#clip-logoMainWhite)">
+    <g id="Rectangle_outer" data-name="Rectangle outer" transform="translate(13 12)" fill="none" stroke="#fff" stroke-width="1">
+      <rect width="174" height="174" stroke="none"/>
+      <rect x="0.5" y="0.5" width="173" height="173" fill="none"/>
+    </g>
+    <g id="Rectangle_inner" data-name="Rectangle inner" transform="translate(18 17)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.8">
+      <path d="M0,0H156a9,9,0,0,1,9,9V165a0,0,0,0,1,0,0H9a9,9,0,0,1-9-9V0A0,0,0,0,1,0,0Z" stroke="none"/>
+      <path d="M.8.4H156A8.6,8.6,0,0,1,164.6,9V164.2a.4.4,0,0,1-.4.4H9A8.6,8.6,0,0,1,.4,156V.8A.4.4,0,0,1,.8.4Z" fill="none"/>
+    </g>
+    <text id="Ak" transform="translate(99 146)" fill="#fff" font-size="154" font-family="AnandaNeptouch, Ananda Neptouch" letter-spacing="-0.052em"><tspan x="-69.3" y="0">Ak</tspan></text>
+    <line id="Line_above" data-name="Line above" x2="32" transform="translate(32 56)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="3"/>
+    <line id="Line_bottom" data-name="Line bottom" x2="32" transform="translate(144 168)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="2"/>
+  </g>
+</svg>

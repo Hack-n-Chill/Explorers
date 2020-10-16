@@ -6,6 +6,7 @@ import SignIn from './User/SignIn'
 import UserDashBoard from './User/UserDashBoard'
 import PrivateRoute from './config/PrivateRoute'
 import CreateWatchList from './User/CreateWatchList'
+import UpdateStockInfo from './User/UpdateStockInfo'
 
 const Routes = () => {
     return (
@@ -16,6 +17,7 @@ const Routes = () => {
                 <Route path="/signin" exact component={SignIn} />
                 <PrivateRoute path="/user/dashboard" exact component={UserDashBoard} />
                 <PrivateRoute path="/user/create/watchlist" exact component={CreateWatchList} />
+                <PrivateRoute path="/user/update/:stockId/:userId" exact component={UpdateStockInfo} />
             </Switch>
         </BrowserRouter>
     )
