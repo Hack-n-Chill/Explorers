@@ -45,13 +45,13 @@ const SignIn = () => {
                 <div className="col-md-6 offset-sm-3 text-left">
                     <form action="">
                         <div className="form-group">
-                            <label className="">Email</label>
+                            <label className="font-weight-bold">Email</label>
                             <input className="form-control" onChange={handleChange("email")} type="email"
                                 value={email}
                             />
                         </div>
                         <div className="form-group">
-                            <label className="t">Password</label>
+                            <label className="font-weight-bold">Password</label>
                             <input className="form-control"
                                 value={password}
                                 onChange={handleChange("password")} type="password" />
