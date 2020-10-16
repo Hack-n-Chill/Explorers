@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useAuthState } from 'react-firebase-hooks/auth'
-import { Redirect, Link } from 'react-router-dom';
-import auth from '../config/auth'
-import { getAllStocks, getAllWatchList } from '../config/UserAPICall';
+import { getAllStocks } from '../config/UserAPICall';
 import Footer from '../Core/Footer';
 import ListOfStocks from '../Core/ListOfStocks';
 import NavBar from '../Core/NavBar';
@@ -10,7 +7,7 @@ import NavBar from '../Core/NavBar';
 const UserDashBoard = () => {
     // this is user dashboard, that i need to make
     // i am considering that this user is an JSON object; which is being certain properties.
-    const [user] = useAuthState(auth);
+    // const [user] = useAuthState(auth);
 
     const [stocks, setStocks] = useState([])
 
@@ -19,6 +16,7 @@ const UserDashBoard = () => {
         ).catch(err => console.log(err))
     }, )
 
+/*     
     const makeNavBar = () =>
         <nav className="navbar navbar-dark bg-dark by-5">
             <a className="navbar-brand text-uppercase">{user.displayName}</a>
@@ -28,13 +26,6 @@ const UserDashBoard = () => {
                     ).catch(err => console.log(err)
                     )
                 }}>LogOut</button>
-
-                {
-                    /*
-                        Dont know why, but everytime after a refresh the website loads into localhost:300/signin route
-                        even a successful logout leads to /signin route   ==============> major issue
-                    */
-                }
             </form>
         </nav>
 
@@ -67,7 +58,8 @@ const UserDashBoard = () => {
                 }
             </div>
         )
-    }
+    } 
+*/
 
     return (
         <>

@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import SignUpImage from '../Assets/google-sign-in.png'
 import firebase from 'firebase/app';
-import auth from '../config/auth';
 import Base from '../Core/Base'
 import { Link } from 'react-router-dom';
 
@@ -29,31 +28,18 @@ const LogInWithGoogle = () => {
     const onSubmit = event => {
         event.preventDefault();
         setValues({ ...values, error: false });
-        console.log("set values are: " + JSON.stringify(values));
-
-        // this is the method which actually send the data to the server containing the user information to get loaded.
-
-        // signup({ name, email, password }) // this methods automatically sends an request to the server and returns a server side response, that we need to deal accordingly
-        //     .then(data => {
-        //         if (data.err) {
-        //             setValues({ ...values, error: data.err, success: false });
-        //         }
-        //         else {
-        //             // we have a got a good response from the server and signup is successful, 
-        //             setValues({
-        //                 ...values,
-        //                 name: "",
-        //                 email: "",
-        //                 password: "",
-        //                 error: "",
-        //                 success: true,
-        //             }); //setting the state once again
-        //             // console.log(`Data that has come back: `+ JSON.stringify(data));
-        //         }
-        //     })
-        //     .catch(err => {
-        //         console.log("Error is: " + err + "\n cannot connect to the server.");
-        //     });
+        firebase.auth().createUserWithEmailAndPassword(email, password)
+            .then(res => {
+                var user = firebase.auth().currentUser;
+                user.updateProfile({
+                displayName: name,
+                })
+                console.log(user.displayName + " signed up & logged in successfully");
+            })
+            .catch(function (error) {
+        // Handle Errors here.
+            alert(error.message);
+        });
     };
 
     const signUpForm = () => {
@@ -62,7 +48,7 @@ const LogInWithGoogle = () => {
                 <div className="col-md-6 offset-sm-3 text-left">
                     <form action="">
                         <div className="form-group">
-                            <label className="text-light">Name</label>
+                            <label className="">Name</label>
                             <input
                                 className="form-control"
                                 type="text"
@@ -71,13 +57,13 @@ const LogInWithGoogle = () => {
                             />
                         </div>
                         <div className="form-group">
-                            <label className="text-light">Email</label>
+                            <label className="">Email</label>
                             <input className="form-control" onChange={handleChange("email")} type="email"
                                 value={email}
                             />
                         </div>
                         <div className="form-group">
-                            <label className="text-light">Password</label>
+                            <label className="">Password</label>
                             <input className="form-control"
                                 value={password}
                                 onChange={handleChange("password")} type="password" />

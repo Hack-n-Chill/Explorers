@@ -15,38 +15,28 @@ const SignIn = () => {
         didRedirect: false, // it's gonna redirect the user to user dashboard or admin dashboard after a succesful authentication
     });
 
-    const { email, password, success, didRedirect, loading, error } = values; // object destructured
+    const { email, password, success } = values; // object destructured
 
     // check higherOrder functions
     const handleChange = name => event => {
         setValues({ ...values, error: "", [name]: event.target.value });
     };
 
-    // const { user } = isAuthenticated(); // return JSON.parse(localStorage.getItem("jwt"));
-
     const onSubmit = event => {
         event.preventDefault();
         setValues({ ...values, error: false, loading: true });
-        // signin({ email, password }) // this methods automatically sends an request to the server and returns a server side response, that we need to deal accordingly
-        //     .then(data => {
-        //         console.log("Response from our beloved server is: " + JSON.stringify(data));
-        //         if (data.err) {
-        //             setValues({ ...values, error: data.err, success: false, didRedirect: false });
-        //         }
-        //         else {
-        //             authenticate(data, () => {
-        //                 setValues({
-        //                     ...values,
-        //                     didRedirect: true,
-        //                     success: true,
-        //                 })
-        //             })
-        //         }
-        //     })
-        //     .catch(err => {
-        //         console.log("Error is: " + err); // not possible to reach the server
-        //         setValues({ ...values, error: err, didRedirect: false, success: false, });
-        //     });
+        firebase.auth().signInWithEmailAndPassword(email, password)
+            .then(res => {
+                console.log(res.user + " signed in successfully");
+                setValues({
+                    ...values,
+                    success: true
+                })
+            })
+            .catch(function (error) {
+        // Handle Errors here.
+            alert(error.message);
+        });
     };
 
     const signInForm = () => {
@@ -55,13 +45,13 @@ const SignIn = () => {
                 <div className="col-md-6 offset-sm-3 text-left">
                     <form action="">
                         <div className="form-group">
-                            <label className="text-light">Email</label>
+                            <label className="">Email</label>
                             <input className="form-control" onChange={handleChange("email")} type="email"
                                 value={email}
                             />
                         </div>
                         <div className="form-group">
-                            <label className="text-light">Password</label>
+                            <label className="t">Password</label>
                             <input className="form-control"
                                 value={password}
                                 onChange={handleChange("password")} type="password" />
@@ -73,7 +63,7 @@ const SignIn = () => {
         );
     }
 
-    const errorMesssage = () => {
+/*     const errorMesssage = () => {
         return (
             <div className="row">
                 <div className="col-md-6 offset-sm-3 text-left">
@@ -86,14 +76,12 @@ const SignIn = () => {
                 </div>
             </div>
         );
-    };
+    }; */
 
     const signInWithGoogle = () => {
         console.log("signin with google button pressed");
         const provider = new firebase.auth.GoogleAuthProvider();
         auth.signInWithPopup(provider).then(function (result) {
-            // This gives you a Google Access Token. You can use it to access the Google API.
-            var token = result.credential.accessToken;
             // The signed-in user info.
             console.log(result.user);
             // ...
