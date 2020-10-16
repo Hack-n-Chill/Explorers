@@ -1,7 +1,6 @@
 import React from 'react'
 import "./Base.css";
 import Footer from './Footer';
-import NavBar from './NavBar';
 
 const Base = ({
     title,
@@ -20,7 +19,6 @@ const Base = ({
             </div>
             <Footer />
         </div>
-
     )
 }
 
