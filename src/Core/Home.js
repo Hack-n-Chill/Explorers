@@ -1,16 +1,14 @@
-import React from 'react'
-import { useAuthState } from "react-firebase-hooks/auth";
-import auth from '../config/auth';
+import React, { useEffect, useState } from 'react'
 import '../styles.css'
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import NavBar from './NavBar';
 import ListOfStocks from './ListOfStocks';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../config/auth';
+import Footer from './Footer';
 
 const Home = () => {
-    const [user] = useAuthState(auth);
-
-    const userIsNotLoggedIn = () =>
-        <ListOfStocks className="m-auto"/>
+    const [user]=useAuthState(auth)
     return (
         <div>
             <NavBar />
@@ -18,9 +16,11 @@ const Home = () => {
                 <Redirect to="/user/dashboard" />
                 :
                 < div >
-                    {userIsNotLoggedIn()}
+
+                    <ListOfStocks className="mx-3" />
                 </div>
             }
+            <Footer />
         </div>
     )
 }

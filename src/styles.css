@@ -3,6 +3,7 @@
     padding: 0;
     border: 0;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 body{
@@ -25,4 +26,19 @@ body{
 
 .navbar-dark{
     background-color: #20232a;
+}
+.dark{
+    background-color: #000;
+}
+.card-text{
+    font-size: 1.3em;
+    line-height: 2em;
+    font-style: oblique;
+    /* fon */
+}
+.card-title {
+    font-size: 1.4em;
+}
+.card-header{
+    font-size: 1.2em;
 }

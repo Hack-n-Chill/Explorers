@@ -3,6 +3,7 @@ import { useAuthState } from 'react-firebase-hooks/auth'
 import { Redirect, Link } from 'react-router-dom';
 import auth from '../config/auth'
 import { getAllStocks, getAllWatchList } from '../config/UserAPICall';
+import Footer from '../Core/Footer';
 import ListOfStocks from '../Core/ListOfStocks';
 import NavBar from '../Core/NavBar';
 
@@ -68,51 +69,20 @@ const UserDashBoard = () => {
         )
     }
 
-    const listOfStocks = () => <>
-        {
-            stocks.length === 0 ?
-                <>
-                    <div className="row text-white">
-                        This WatchList has no stocks Listed Yet.
-                    </div>
-                    <Link to="/"><div className="row btn btn-light">Add A new Stock</div></Link>
-                </> :
-                <div className="text-white">
-                    <table align='center' border='1'>
-                        <thead>
-                            <tr>
-                                <td>Name</td>
-                                <td>Price</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {stocks.map(stock => (
-                                <tr key={stock.name}>
-                                    <td>{stock.name}</td>
-                                    <td>{stock.price}</td>
-                                </tr>
-                            ))
-                            }
-                        </tbody>
-                    </table>
-                </div>
-
-        }
-    </>
-
-
     return (
         <>
             <NavBar />
-            <div className="row by-5 my-5 py-5">
-                <div className="col-3 ">
-                    {watchLists()}
+            <div className="row mt-2">
+                <div className="col-1 ml-2 ">
+                    {/* {watchLists()} */}
                 </div>
-                <div className="col-9">
-                    {/* {listOfStocks()} */}
+            </div>
+            <div className="row ml-4">
+                <div className="col">
                     <ListOfStocks className="mr-3" stockArray={stocks}/>
                 </div>
             </div>
+            <Footer userPresent />
         </>
     )
 }
