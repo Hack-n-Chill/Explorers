@@ -34,11 +34,13 @@ body{
     font-size: 1.3em;
     line-height: 2em;
     font-style: oblique;
-    /* fon */
 }
 .card-title {
     font-size: 1.4em;
 }
 .card-header{
     font-size: 1.2em;
+}
+.titleBar{
+    font-size: 2.2em;
 }

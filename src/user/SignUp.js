@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import SignUpImage from '../Assets/google-sign-in.png'
 import firebase from 'firebase/app';
 import Base from '../Core/Base'
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 
-const LogInWithGoogle = () => {
+const SignUp = () => {
 
     const [values, setValues] = useState({
         name: "",
@@ -35,6 +35,12 @@ const LogInWithGoogle = () => {
                 displayName: name,
                 })
                 console.log(user.displayName + " signed up & logged in successfully");
+                setValues({
+                    ...values,
+                    success: true,
+                    email,
+                    password
+                })
             })
             .catch(function (error) {
         // Handle Errors here.
@@ -42,9 +48,15 @@ const LogInWithGoogle = () => {
         });
     };
 
+    const performRedirect = () => {
+        if (success) {
+            return <Redirect to="/" />
+        }
+    }
     const signUpForm = () => {
         return (
-            <div className="row">
+            <div className="row mt-2">
+                {performRedirect()}
                 <div className="col-md-6 offset-sm-3 text-left">
                     <form action="">
                         <div className="form-group">
@@ -118,7 +130,7 @@ const LogInWithGoogle = () => {
             <div className="row">
                 <div className="col-md-6 offset-sm-3 text-left">
                     <button onClick={signUpWithGoogle} type="submit">
-                        <img src={SignUpImage} alt="Sign Up with google" height="50" className="bg-dark" />
+                        <img src={SignUpImage} alt="Sign Up with google" height="50" className="bg-white" />
                     </button>
                 </div>
             </div>
@@ -129,4 +141,4 @@ const LogInWithGoogle = () => {
     )
 }
 
-export default LogInWithGoogle
+export default SignUp

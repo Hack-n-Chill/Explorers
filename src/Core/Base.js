@@ -1,5 +1,7 @@
 import React from 'react'
 import "./Base.css";
+import Footer from './Footer';
+import NavBar from './NavBar';
 
 const Base = ({
     title,
@@ -9,13 +11,14 @@ const Base = ({
 }) => {
     return (
         <div>
-            <div className="container-fluid">
-                <div className="jumbotron text-dark text-center">
-                    <h2 className="display-4">{title}</h2>
-                    <p className="lead">{description}</p>
+            <div className="mb-5 fixed-top">
+                <div className="text-center bg-dark">
+                    <div className="titleBar my-2 text-white">{title}</div>
+                    <p className="lead my-1 text-white my-2">{description}</p>
                 </div>
                 <div className={className}>{children}</div>
             </div>
+            <Footer />
         </div>
 
     )

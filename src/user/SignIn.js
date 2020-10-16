@@ -30,7 +30,9 @@ const SignIn = () => {
                 console.log(res.user + " signed in successfully");
                 setValues({
                     ...values,
-                    success: true
+                    success: true,
+                    email,
+                    password,
                 })
             })
             .catch(function (error) {
@@ -41,7 +43,7 @@ const SignIn = () => {
 
     const signInForm = () => {
         return (
-            <div className="row">
+            <div className="row mt-3">
                 <div className="col-md-6 offset-sm-3 text-left">
                     <form action="">
                         <div className="form-group">
@@ -99,7 +101,7 @@ const SignIn = () => {
     }
 
     return (
-        <Base title="SignIn Page" description="A page for an existing user to signin">
+        <Base title="SignIn Page" description="A page for an existing user to signin" className="font-weight-bold">
             {signInForm()}
             {performRedirect()}
             <div className="row" >
@@ -108,9 +110,9 @@ const SignIn = () => {
                 </div>
             </div>
             <div className="row">
-                <div className="col-md-6 offset-sm-3 text-left">
+                <div className="col-md-6 offset-sm-3 text-left align-right">
                     <button onClick={signInWithGoogle} >
-                        <img src={SignInImage} alt="Sign Up with google" height="50" className="bg-dark" />
+                        <img src={SignInImage} alt="Sign Up with google" height="50" className="bg-white" />
                     </button>
                 </div>
             </div>
