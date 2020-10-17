@@ -122,6 +122,7 @@ const ListOfStocks = ({
 
     const showStockInfo = stockName => {
         console.log(stockName);
+        return <a href={`https://www.morningstar.com/stocks/xnas/${stockName.id}/analysis`} ></a>
         // this needs redirect me to the information page
     }
 
@@ -160,8 +161,10 @@ const ListOfStocks = ({
                             </thead>
                             <tbody>
                                 {
-                                    stockArray.map((stock, index) => <tr onClick={() => showStockInfo(stock)}>
-                                        <td>{stock.name}</td>
+                                    stockArray.map((stock, index) =>
+                                        <tr>
+                                            <a href={`https://in.finance.yahoo.com/quote/${stock.id}/analysis/`} target="_blank" className="">
+                                        <td>{stock.name}</td></a>
                                         <td className="font-weight-bold">{stock.currentPrice}</td>
                                         <td>{stock.previousPrice}</td>
                                         <td>{differenceAndPercentage(stock.currentPrice, stock.previousPrice)}</td>
@@ -180,8 +183,9 @@ const ListOfStocks = ({
                                                     </span>
                                                 </td>
                                             </> : <></>
-                                        }
-                                    </tr>
+                                                }
+                                                {/* </a> */}
+                                        </tr>
                                     )
                                 }
                             </tbody>
