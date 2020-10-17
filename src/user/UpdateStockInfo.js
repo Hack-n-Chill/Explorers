@@ -54,6 +54,7 @@ const UpdateStockInfo = ({ match }) => {
                     ...stockInfo,
                 }) // update all the info
                 setSuccess(true)
+                setLoading(false)
             }
         }
         ).catch(err => console.log(err)

@@ -3,6 +3,7 @@ import { Button, OverlayTrigger, Popover, Table } from 'react-bootstrap';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
 import auth from '../config/auth';
+import { deleteStock } from '../config/UserAPICall';
 
 const ListOfStocks = ({
     stockArray = [{
@@ -24,6 +25,10 @@ const ListOfStocks = ({
     }],
     className = ""
 }) => {
+    const [user] = useAuthState(auth)
+    const [loading, setLoading] = useState(false)
+    const [success, setSuccess] = useState(false)
+    const [error, setError] = useState("")
 
     const differenceAndPercentage = (currentValue, previousValue) => {
         const diff = currentValue - previousValue;
@@ -40,7 +45,6 @@ const ListOfStocks = ({
         )
     }
 
-    const [user] = useAuthState(auth)
 
     const userPricesToTrigger = stockName => {
         const popover = (
@@ -86,8 +90,20 @@ const ListOfStocks = ({
         )
     }
 
-    const deleteThisStock = (event) => {
+    const deleteThisStock = stockId => {
         console.log("delete this stock method is invoked");
+        setLoading(true)
+        deleteStock(user.email, stockId).then(res => {
+            setLoading(false)
+            if (res.error) {
+                setError(res.error)
+            } else {
+                setSuccess(true) 
+                // hoping that the row will delete it self, as the useEffect - > preload method will be invoked as soon as the state value gets changed.
+            }
+        }
+        ).catch(err => console.log(err)
+        )
     }
 
     return (
@@ -127,7 +143,7 @@ const ListOfStocks = ({
                                                 <td scope="col">{userPricesToTrigger(stock.name)}</td>
                                                 <td scope="col">
                                                     <Link to={`/user/update/${stock.name}`} className="btn btn-success">Update</Link></td>
-                                                <td onClick={deleteThisStock}>
+                                                <td onClick={() => deleteThisStock(stock.name)}>
                                                     <span className="btn btn-danger">
                                                         Delete
                                                     </span>
