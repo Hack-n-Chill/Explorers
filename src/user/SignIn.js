@@ -48,17 +48,17 @@ const SignIn = () => {
                     <form action="">
                         <div className="form-group">
                             <label className="font-weight-bold">Email</label>
-                            <input className="form-control" onChange={handleChange("email")} type="email"
+                            <input className="form-control controlInput2" onChange={handleChange("email")} type="email"
                                 value={email}
                             />
                         </div>
                         <div className="form-group">
                             <label className="font-weight-bold">Password</label>
-                            <input className="form-control"
+                            <input className="form-control controlInput2"
                                 value={password}
                                 onChange={handleChange("password")} type="password" />
                         </div>
-                        <div className="btn btn-success btn-block" onClick={onSubmit}>Submit</div>
+                        <div className="btn btn-success btn-block hvr" onClick={onSubmit}>Submit</div>
                     </form>
                 </div>
             </div>
@@ -115,7 +115,7 @@ const SignIn = () => {
             <div className="row">
                 <div className="col-md-6 offset-sm-3 text-left align-right">
                     <button onClick={signInWithGoogle} >
-                        <img src={SignInImage} alt="Sign Up with google" height="50" className="bg-white" />
+                        <img src={SignInImage} alt="Sign Up with google" height="50" className="bg-white img-hvr" />
                     </button>
                 </div>
             </div>

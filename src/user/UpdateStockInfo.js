@@ -73,44 +73,44 @@ const UpdateStockInfo = ({ match }) => {
     const updateForm = () => (
         <form>
             <div className="form-group row">
-                <label for="exampleFormControlInput1" className="col-sm-2 col-form-label">Stock Name</label>
+                <label for="exampleFormControlInput1" className="col-sm-2 col-form-label fnt">Stock Name</label>
                 <div className="col-sm-10">
-                    <input type="text" className="form-control-plaintext" id="exampleFormControlInput1" placeholder={name ? name : "Any random name"} readOnly onChange={handleChange("name")} />
+                    <input type="text" className="form-control-plaintext controlInput2" id="exampleFormControlInput1" placeholder={name ? name : "Any random name"} readOnly onChange={handleChange("name")} />
                 </div>
             </div>
             <div className="form-group row">
-                <label for="exampleFormControlInput1" className="col-sm-2 col-form-label">Stock Price</label>
+                <label for="exampleFormControlInput1" className="col-sm-2 col-form-label fnt">Stock Price</label>
                 <div className="col-sm-10">
-                    <input type="text" className="form-control-plaintext" id="exampleFormControlInput1" placeholder={currentPrice ? currentPrice : 100} readOnly onChange={handleChange("price")} />
+                    <input type="text" className="form-control-plaintext controlInput2" id="exampleFormControlInput1" placeholder={currentPrice ? currentPrice : 100} readOnly onChange={handleChange("price")} />
                 </div>
             </div>
             <div className="form-group row">
-                <label for="exampleFormControlInput1" className="col-sm-2 col-form-label">Sell Trigger Price</label>
+                <label for="exampleFormControlInput1" className="col-sm-2 col-form-label fnt">Sell Trigger Price</label>
                 <div className="col-sm-10">
-                    <input type="text" className="form-control" id="exampleFormControlInput1" placeholder={sell ? sell : 120} onChange={handleChange("sell")} />
+                    <input type="text" className="form-control controlInput2" id="exampleFormControlInput1 fnt" placeholder={sell ? sell : 120} onChange={handleChange("sell")} />
                 </div>
             </div>
             <div className="form-group row">
-                <label for="exampleFormControlInput1" className="col-sm-2 col-form-label">Buy Trigger Price</label>
+                <label for="exampleFormControlInput1" className="col-sm-2 col-form-label fnt">Buy Trigger Price</label>
                 <div className="col-sm-10">
-                    <input type="text" className="form-control" id="exampleFormControlInput1" placeholder={buy ? buy : 80} onChange={handleChange("buy")} />
+                    <input type="text" className="form-control controlInput2" id="exampleFormControlInput1" placeholder={buy ? buy : 80} onChange={handleChange("buy")} />
                 </div>
             </div>
             <div className="form-group row">
-                <label for="exampleFormControlInput1" className="col-sm-2 col-form-label">Stop Loss Trigger Price</label>
+                <label for="exampleFormControlInput1" className="col-sm-2 col-form-label fnt">Stop Loss Trigger Price</label>
                 <div className="col-sm-10">
-                    <input type="text" className="form-control" id="exampleFormControlInput1" placeholder={stopLoss ? stopLoss : 50} onChange={handleChange("stopLoss")} />
+                    <input type="text" className="form-control controlInput2" id="exampleFormControlInput1" placeholder={stopLoss ? stopLoss : 50} onChange={handleChange("stopLoss")} />
                 </div>
             </div>
             <div className="form-group row">
-                <label for="exampleFormControlInput1" className="col-sm-2 col-form-label">Trailing Stop Loss Trigger Price</label>
+                <label for="exampleFormControlInput1" className="col-sm-2 col-form-label fnt">Trailing Stop Loss Trigger Price</label>
                 <div className="col-sm-10">
-                    <input type="text" className="form-control" id="exampleFormControlInput1" placeholder={trailingStopLoss ? trailingStopLoss : 10} onChange={handleChange("trailingStopLoss")} />
+                    <input type="text" className="form-control controlInput2" id="exampleFormControlInput1" placeholder={trailingStopLoss ? trailingStopLoss : 10} onChange={handleChange("trailingStopLoss")} />
                 </div>
             </div>
             <div className="form-group row">
-                <button type="submit" onClick={onSubmit} className="col-12 btn btn-lg btn-success mb-3 ">
-                    Update Triggers
+                <button type="submit" onClick={onSubmit} className="col-12 btn btn-lg btn-success mb-3  ">
+                  <div className="hvr">Update Triggers</div>  
                 </button>
             </div>
         </form>
