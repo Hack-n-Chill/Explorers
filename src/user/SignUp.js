@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import SignUpImage from '../Assets/google-sign-in.png'
+import SignUpImage from '../Assets/google-sign-up.png'
 import firebase from 'firebase/app';
 import Base from '../Core/Base'
 import { Link, Redirect } from 'react-router-dom';

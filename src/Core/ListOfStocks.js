@@ -7,7 +7,7 @@ import { deleteStock } from '../config/UserAPICall';
 import { anyTriggerHit } from './AlgorithmToSendNotification';
 
 const checkAllTriggers = (user, stock) => {
-    
+
 }
 
 
@@ -120,24 +120,24 @@ const ListOfStocks = ({
     // }
 
 
-    const showStockInfo = stockName => {
-        console.log(stockName);
-        return <a href={`https://www.morningstar.com/stocks/xnas/${stockName.id}/analysis`} ></a>
-        // this needs redirect me to the information page
+    const findWhichToShow = (user, stock) => {
+        const str = anyTriggerHit(user, stock)
+        if (str) {
+            alert(str)
+            return <span className="badge badge-info">{str}</span>
+        }
+        else
+            return <Link to={`/user/update/${stock.name}`} className="btn btn-success">Update</Link>
     }
 
-    const findWhichToShow = (user, stock) => {
-        if (anyTriggerHit(user, stock))
-            return <span className="badge badge-info">{checkIfAnyTriggerHit}</span>
-        else
-            return <Link to={`/user/update/${stock.name}`} className="btn btn-success">Update</Link> 
-    }
-    
 
     return (
         <div className={className}>
             {
-                stockArray.length === 0 ? <>Empty Array</> :
+                stockArray.length === 0 ?
+                    <div class="alert alert-danger" role="alert">
+                        Your Search List is Empty.
+                    </div> :
 
                     <>
                         <ul className="list-group mt-1 border-top border-dark">
@@ -164,27 +164,26 @@ const ListOfStocks = ({
                                     stockArray.map((stock, index) =>
                                         <tr>
                                             <a href={`https://in.finance.yahoo.com/quote/${stock.id}/analysis/`} target="_blank" className="">
-                                        <td>{stock.name}</td></a>
-                                        <td className="font-weight-bold">{stock.currentPrice}</td>
-                                        <td>{stock.previousPrice}</td>
-                                        <td>{differenceAndPercentage(stock.currentPrice, stock.previousPrice)}</td>
-                                        {
-                                            user ? <>
-                                                <td scope="col">{userPricesToTrigger(stock.name)}</td>
-                                                <td scope="col">
-                                                    {
-                                                        findWhichToShow(user, stock)
-                                                        // checkIfAnyTriggerHit ?  : <Link to={`/user/update/${stock.name}`} className="btn btn-success">Update</Link> 
-                                                    }
-                                                </td>
-                                                <td onClick={() => deleteStock(user.email, stock.id)}>
-                                                    <span className="btn btn-danger">
-                                                        Delete
+                                                <td>{stock.name}</td></a>
+                                            <td className="font-weight-bold">{stock.currentPrice}</td>
+                                            <td>{stock.previousPrice}</td>
+                                            <td>{differenceAndPercentage(stock.currentPrice, stock.previousPrice)}</td>
+                                            {
+                                                user ? <>
+                                                    <td scope="col">{userPricesToTrigger(stock.name)}</td>
+                                                    <td scope="col">
+                                                        {
+                                                            findWhichToShow(user, stock)
+                                                        }
+                                                    </td>
+                                                    <td onClick={() => deleteStock(user.email, stock.id)}>
+                                                        <span className="btn btn-danger">
+                                                            Delete
                                                     </span>
-                                                </td>
-                                            </> : <></>
-                                                }
-                                                {/* </a> */}
+                                                    </td>
+                                                </> : <></>
+                                            }
+                                            {/* </a> */}
                                         </tr>
                                     )
                                 }
