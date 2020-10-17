@@ -75,7 +75,7 @@ const SignUp = () => {
                         <div className="form-group">
                             <label className="font-weight-bold">Name</label>
                             <input
-                                className="form-control"
+                                className="form-control controlInput2"
                                 type="text"
                                 onChange={handleChange("name")}
                                 value={name}
@@ -83,17 +83,17 @@ const SignUp = () => {
                         </div>
                         <div className="form-group">
                             <label className="font-weight-bold">Email</label>
-                            <input className="form-control" onChange={handleChange("email")} type="email"
+                            <input className="form-control controlInput2" onChange={handleChange("email")} type="email"
                                 value={email}
                             />
                         </div>
                         <div className="form-group">
                             <label className="font-weight-bold">Password</label>
-                            <input className="form-control"
+                            <input className="form-control controlInput2"
                                 value={password}
                                 onChange={handleChange("password")} type="password" />
                         </div>
-                        <div className="btn btn-success btn-block" onClick={onSubmit}>Submit</div>
+                        <div className="btn btn-success btn-block hvr" onClick={onSubmit}>Submit</div>
                     </form>
                 </div>
             </div>
@@ -145,7 +145,7 @@ const SignUp = () => {
                 <div className="col-5"></div>
                 <div className="col-2" >
                     <button onClick={signUpWithGoogle} type="submit">
-                        <img src={SignUpImage} alt="Sign Up with google" height="50" className="bg-white" />
+                        <img src={SignUpImage} alt="Sign Up with google" height="50" className="bg-white img-hvr" />
                     </button>
                 </div>
                 <div className="col-5"></div>

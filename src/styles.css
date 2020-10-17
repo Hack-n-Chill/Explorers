@@ -48,3 +48,30 @@ body{
 .searchButton{
     font-size: 0.8em;
 }
+.hvr:hover{
+    font-weight: bolder;
+    
+}
+
+.controlInput2 {
+   transition: width 0.4s ease-in-out;
+  }
+  
+  .controlInput2:focus {
+    background-color: lightgray;
+    border: 1.5px solid #555;
+    width: 100%;
+    font-size: large;
+    font-style: oblique;
+  }
+  .fnt{
+      font-weight: bolder;
+      font-size: medium;
+  }
+  
+  .img-hvr:hover{
+    -ms-transform: scale(1.5); /* IE 9 */
+    -webkit-transform: scale(1.5); /* Safari 3-8 */
+    transform: scale(1.2); 
+  }
+  
