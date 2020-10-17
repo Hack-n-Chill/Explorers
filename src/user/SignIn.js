@@ -36,9 +36,9 @@ const SignIn = () => {
                 })
             })
             .catch(function (error) {
-        // Handle Errors here.
-            alert(error.message);
-        });
+                // Handle Errors here.
+                alert(error.message);
+            });
     };
 
     const signInForm = () => {
@@ -65,20 +65,20 @@ const SignIn = () => {
         );
     }
 
-/*     const errorMesssage = () => {
-        return (
-            <div className="row">
-                <div className="col-md-6 offset-sm-3 text-left">
-
-                    <div className="alert alert-danger"
-                        style={{ display: error ? "" : "none" }}
-                    >
-                        {error}
+    /*     const errorMesssage = () => {
+            return (
+                <div className="row">
+                    <div className="col-md-6 offset-sm-3 text-left">
+    
+                        <div className="alert alert-danger"
+                            style={{ display: error ? "" : "none" }}
+                        >
+                            {error}
+                        </div>
                     </div>
                 </div>
-            </div>
-        );
-    }; */
+            );
+        }; */
 
     const signInWithGoogle = () => {
         const provider = new firebase.auth.GoogleAuthProvider();
@@ -91,10 +91,10 @@ const SignIn = () => {
                 success: true
             })
         })
-        .catch(function (error) {
-        // Handle Errors here.
-            alert(error.message);
-        });
+            .catch(function (error) {
+                // Handle Errors here.
+                alert(error.message);
+            });
     }
 
     const performRedirect = () => {
@@ -109,15 +109,17 @@ const SignIn = () => {
             {performRedirect()}
             <div className="row" >
                 <div className="col-md-6 offset-sm-3 text-left">
-                    <p className="text-white text-center font-weight-bold">Or</p>
+                    <p className="text-black pt-2 text-center font-weight-bold">Or</p>
                 </div>
             </div>
             <div className="row">
-                <div className="col-md-6 offset-sm-3 text-left align-right">
+                <div className="col-5"></div>
+                <div className="col-2">
                     <button onClick={signInWithGoogle} >
                         <img src={SignInImage} alt="Sign Up with google" height="50" className="bg-white" />
                     </button>
                 </div>
+                <div className="col-5"></div>
             </div>
             <p className="text-white text-center">
                 {JSON.stringify(values)}

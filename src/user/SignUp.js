@@ -138,15 +138,17 @@ const SignUp = () => {
             {signUpForm()}
             <div className="row" >
                 <div className="col-md-6 offset-sm-3 text-left">
-                    <p className="text-white text-center font-weight-bold">Or</p>
+                    <p className="text-black pt-2 text-center font-weight-bold">Or</p>
                 </div>
             </div>
             <div className="row">
-                <div className="col-md-6 offset-sm-3 text-left" >
+                <div className="col-5"></div>
+                <div className="col-2" >
                     <button onClick={signUpWithGoogle} type="submit">
                         <img src={SignUpImage} alt="Sign Up with google" height="50" className="bg-white" />
                     </button>
                 </div>
+                <div className="col-5"></div>
             </div>
             <p className="text-white text-center">
                 {JSON.stringify(values)}
