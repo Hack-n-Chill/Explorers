@@ -74,4 +74,12 @@ body{
     -webkit-transform: scale(1.5); /* Safari 3-8 */
     transform: scale(1.2); 
   }
+  a{
+    color: black;
+    text-decoration: none;
+  }
+  a:hover{
+      /* font-weight: bolder; */
+      color:  black;
+  }
   
