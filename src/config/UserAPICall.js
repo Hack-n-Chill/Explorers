@@ -25,4 +25,12 @@ export const updateStock = (userId, stockId, newStockInfo) => {
     )
 }
 
+export const deleteStock = (userId, stockId) => {
+    return new Promise((resolve, reject) => {
+        // this part will br handled by droyder
+    }
+    )
+}
+
+
 
