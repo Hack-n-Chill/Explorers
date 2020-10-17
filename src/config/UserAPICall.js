@@ -23,7 +23,7 @@ export const getStock = (userId, stockId) => {
 const userDB = firebase.firestore().collection("Users");
 const stockDB = firebase.firestore().collection("Stocks");
 
-
+/*
 export const updateStockPrice = (stockId, price) => {
     stockDB.doc(stockId).get().then(doc => {
         let prevPrice = doc.data().currentPrice;
@@ -33,12 +33,13 @@ export const updateStockPrice = (stockId, price) => {
         }).then(() => {
             console.log(stockId,"Updated Succesfully to",price);
         }).catch((error) => {
-        console.log("Error updating :",stockId, error);
+            console.log("Error updating :",stockId, error);
     });
     }).catch((error) => {
         console.log("Error getting ",stockId, error);
     });
-}
+} 
+*/
 
 const updateStockName = (stockId) => {
     let url = 'https://finnhub.io/api/v1/stock/profile2?symbol=';
@@ -59,56 +60,53 @@ const updateStockName = (stockId) => {
         });
     });
 }
-export const addStock = (userId, stockId) => {
-    return new Promise((resolve, reject) => {
-        // this part will br handled by droyder
-    }
-    )
-}
 
 
 export const addStock = (userID, stockId) => {
-    
-    stockDB.doc(stockId).get().then(doc => {
-        if (doc.exists) {
+    return new Promise((resolve, reject) => {
+        stockDB.doc(stockId).get().then(doc => {
+            if (doc.exists) {
             
-        } else {
-            let url = 'https://finnhub.io/api/v1/quote?symbol=';
-            let token = '&token=bu4heof48v6p8t6ghn2g';
-            url = url + stockId + token;
-            request(url, { json: true }, (err, res, body) => {
-                if (err) { return console.log(err); }
-                let stockPrice = body.c;
-                console.log(doc.id, " => ", stockPrice);
-                stockDB.doc(stockId).set({
-                    currentPrice: stockPrice,
-                    previousPrice: stockPrice
-                },{merge : true}).then(() => {
-                    console.log(stockId, "Updated Succesfully to", stockPrice);
-                }).catch((error) => {
-                    console.log("Error updating :", stockId, error)
+            } else {
+                let url = 'https://finnhub.io/api/v1/quote?symbol=';
+                let token = '&token=bu4heof48v6p8t6ghn2g';
+                url = url + stockId + token;
+                request(url, { json: true }, (err, res, body) => {
+                    if (err) { return console.log(err); }
+                    let stockPrice = body.c;
+                    console.log(doc.id, " => ", stockPrice);
+                    stockDB.doc(stockId).set({
+                        currentPrice: stockPrice,
+                        previousPrice: stockPrice
+                    }, { merge: true }).then(() => {
+                        console.log(stockId, "Updated Succesfully to", stockPrice);
+                    }).catch((error) => {
+                        console.log("Error updating :", stockId, error)
+                    });
                 });
-            });
-            updateStockName(stockId);
-        }
-    })
-
-    userDB.doc(userID).update({
-        watchList: firebase.firestore.FieldValue.arrayUnion(
-            {
-                stockID: stockId,
-                buyTarget : 0,
-                sellTarget : 0,
-                stopLoss : 0,
-                trailing : 0,
+                updateStockName(stockId);
             }
-        ),
-        userStocks: firebase.firestore.FieldValue.arrayUnion(stockId)
-    }).then(() => {
-        console.log(stockId, "added Succesfully");
-    }).catch((error) => {
-        console.log("Error adding :", stockId, error);
-    }) 
+        })
+
+        userDB.doc(userID).update({
+            watchList: firebase.firestore.FieldValue.arrayUnion(
+                {
+                    stockID: stockId,
+                    buyTarget: 0,
+                    sellTarget: 0,
+                    stopLoss: 0,
+                    trailing: 0,
+                }
+            ),
+            userStocks: firebase.firestore.FieldValue.arrayUnion(stockId)
+        }).then(() => {
+            console.log(stockId, "added Succesfully");
+            resolve(true)
+        }).catch((error) => {
+            console.log("Error adding :", stockId, error);
+            reject(true)
+        })
+    })
 }
 
 export const updateStock = () => {

@@ -12,19 +12,9 @@ const NavBar = () => {
     const [success, setSuccess] = useState(false) // success and error can be there but, doesn't make sense as of now.
     const [searchValue, setSearchValue] = useState("")
 
-    const searchButtonPressed = () => {
-        console.log("search button pressed");
-        console.log("value present in search box is: " + searchValue);
-        addStock(user, searchValue).then(res => {
-            if (res.err) {
-
-            } else {
-                setSearchValue("")
-            }
-        }
-        ).catch(err => console.log(err))
-        // I know the above method is not gonna work now.
-        setSearchValue("") // comment this line after fetching the api.
+    const addStockToWatchList = () => {
+        addStock(user.email, searchValue).then(res => setSuccess(true)).catch(err => alert(`${searchValue} Invalid stock symbol`))
+        setSearchValue("")
     }
     const handleChange = name => event => {
         setSearchValue(event.target.value)
@@ -41,7 +31,7 @@ const NavBar = () => {
                         user ? (
                             <>
                                 <input className="form-control mr-sm-2" type="search" placeholder="Search Your Stock" aria-label="Search" value={searchValue} onChange={handleChange("searchBarValue")}/>
-                                <button className="btn btn-light my-2 my-sm-0 font-weight-bold searchButton" type="button" onClick={()=>searchButtonPressed()} >Add to Watch List</button>
+                                <button className="btn btn-light my-2 my-sm-0 font-weight-bold searchButton" type="button" onClick={()=>addStockToWatchList()} >Add to Watch List</button>
                             </>
                         ) : (
                                 <>
