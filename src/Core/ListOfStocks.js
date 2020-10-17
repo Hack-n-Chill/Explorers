@@ -43,6 +43,7 @@ const ListOfStocks = ({
         trailingStopLossTrigerred: false,
     })
     const { buyPriceTrigerred, sellPriceTrigerred, stopLossTrigerred, trailingStopLossTrigerred } = triggers
+    
     const differenceAndPercentage = (currentValue, previousValue) => {
         const diff = currentValue - previousValue;
         const percentage = (diff / previousValue) * 100;

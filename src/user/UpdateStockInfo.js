@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { Redirect } from 'react-router-dom'
 import auth from '../config/auth'
-import { getStock, updateStock } from '../config/UserAPICall'
+import { getAllStocks, getStock, getUserStock, updateStock } from '../config/UserAPICall'
 import Base from '../Core/Base'
 
 // for every refresh, it's taking me into /user/dashboard ======> minor bug, will fix it today afternoon.
@@ -22,16 +22,20 @@ const UpdateStockInfo = ({ match }) => {
     const [error, setError] = useState(false)
 
     const preLoad = stockId => {
-        getStock(user.email, stockId).then(res => {
+        getUserStock(user.email, stockId).then(res => {
             // considering res is going to store all the updates of the stock
+            const myStock = res.find(e => e.stockId === stockId)
+            const actualStock = getAllStocks().then(stockAry => {
+                return stockAry.find(e => e.id === stockId)
+            })
             setStockInfo({
                 ...stockInfo,
-                name: res.name,
-                currentPrice: res.currentPrice,
-                sell: res.sell,
-                buy: res.buy,
-                stopLoss: res.stopLoss,
-                trailingStopLoss: res.trailingStopLoss
+                name: actualStock.name,
+                currentPrice: actualStock.currentPrice,
+                sell: myStock.sellTarget,
+                buy: myStock.buyTarget,
+                stopLoss: myStock.stopLoss,
+                trailingStopLoss: myStock.trailing
             })
         }
         ).catch(err => console.log(err))
@@ -49,7 +53,7 @@ const UpdateStockInfo = ({ match }) => {
             if (data.error) {
                 setLoading(false)
                 setError(data.error)
-            } else { 
+            } else {
                 setStockInfo({
                     ...stockInfo,
                 }) // update all the info
@@ -111,7 +115,7 @@ const UpdateStockInfo = ({ match }) => {
             </div>
             <div className="form-group row">
                 <button type="submit" onClick={onSubmit} className="col-12 btn btn-lg btn-success mb-3  ">
-                  <div className="hvr">Update Triggers</div>  
+                    <div className="hvr">Update Triggers</div>
                 </button>
             </div>
         </form>
