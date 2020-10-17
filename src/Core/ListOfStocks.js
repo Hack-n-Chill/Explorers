@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Button, OverlayTrigger, Popover, Table } from 'react-bootstrap';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
 import auth from '../config/auth';
@@ -39,21 +40,56 @@ const ListOfStocks = ({
         )
     }
 
-    const [showDropDown, setShowDropDown] = useState(false)
     const [user] = useAuthState(auth)
-    const userPricesToTrigger = stockName =>
-        <div className="btn-group">
-            <button className="btn btn-secondary dropdown-toggle" href="#" type="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                onClick={() => setShowDropDown(!showDropDown)
-                }>
-                {stockName} Triggers
-            </ button>
-        </div>
+
+    const userPricesToTrigger = stockName => {
+        const popover = (
+            <Popover id="popover-basic">
+                <Table striped bordered hover size="sm">
+                    <Popover.Content>
+                        <thead>
+                            <tr>
+                                <th>
+                                    Trigger Type
+                                </th>
+                                <th>
+                                    Trigger Price
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Buy</td>
+                                <td>190</td>
+                            </tr>
+                            <tr>
+                                <td>Sell</td>
+                                <td>500</td>
+                            </tr>
+                            <tr>
+                                <td>Stop Loss</td>
+                                <td>150</td>
+                            </tr>
+                            <tr>
+                                <td>Trailing Stop Loss</td>
+                                <td>20%</td>
+                            </tr>
+                        </tbody>
+                    </Popover.Content>
+                </Table>
+            </Popover>
+        );
+        return (
+            <OverlayTrigger trigger="click" placement="bottom" overlay={popover}>
+                <Button variant="secondary">{stockName}'s Trigger</Button>
+            </OverlayTrigger>
+        )
+    }
 
     const deleteThisStock = (event) => {
         console.log("delete this stock method is invoked");
     }
-    
+
     return (
         <div className={className}>
             {
@@ -69,7 +105,7 @@ const ListOfStocks = ({
                                     <th scope="col">Stock Name</th>
                                     <th scope="col ">Current Price</th>
                                     <th scope="col">Previous Price</th>
-                                    <th scope="col">Change</th>
+                                    <th scope="col">Change (In 5mins)</th>
                                     {
                                         user ? <>
                                             <th scope="col">Triggers</th>
@@ -90,7 +126,7 @@ const ListOfStocks = ({
                                             user ? <>
                                                 <td scope="col">{userPricesToTrigger(stock.name)}</td>
                                                 <td scope="col">
-                                                    <Link to={`/user/update/${stock.name}/${user.displayName}`} className="btn btn-success">Update</Link></td>
+                                                    <Link to={`/user/update/${stock.name}`} className="btn btn-success">Update</Link></td>
                                                 <td onClick={deleteThisStock}>
                                                     <span className="btn btn-danger">
                                                         Delete

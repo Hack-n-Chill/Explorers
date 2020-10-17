@@ -1,10 +1,5 @@
 import firebase from 'firebase';
 
-export const getAllWatchList = user => {
-    // an api call to the server to fetch all the eatchLists of tht secific user
-    return []
-}
-
 export const getAllStocks = () => {
     return new Promise((resolve, reject) => {
         firebase.firestore().collection("Stocks")
@@ -15,3 +10,27 @@ export const getAllStocks = () => {
             }, reject)
     })
 }
+
+export const getStock = (userId, stockId) => {
+    return new Promise((resolve, reject) => {
+        // this part will br handled by droyder
+    }
+    )
+}
+
+export const updateStock = (userId, stockId, newStockInfo) => {
+    return new Promise((resolve, reject) => {
+        // this part will br handled by droyder
+    }
+    )
+}
+
+export const deleteStock = (userId, stockId) => {
+    return new Promise((resolve, reject) => {
+        // this part will br handled by droyder
+    }
+    )
+}
+
+
+

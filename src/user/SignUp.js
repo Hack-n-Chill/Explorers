@@ -132,6 +132,7 @@ const SignUp = () => {
 
     return (
         <Base title="SignUp Page" description="A page for a user to SignUp!">
+            {performRedirect()}
             {successMesssage()}
             {errorMesssage()}
             {signUpForm()}
