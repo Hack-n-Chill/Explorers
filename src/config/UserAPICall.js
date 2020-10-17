@@ -12,23 +12,20 @@ export const getAllStocks = () => {
 }
 
 export const getStock = (userId, stockId) => {
-        return new Promise((resolve, reject) => {
-            // this part will br handled by droyder
-        }
+    return new Promise((resolve, reject) => {
+        // this part will br handled by droyder
+    }
     )
 }
 
 const userDB = firebase.firestore().collection("Users");
-const userId = firebase.auth().currentUser.email.toString();
 
-export const addStock = ( stockId, newStockInfo) => {
-        // return new Promise((resolve, reject) => {
-        //     // this part will br handled by droyder
-            
-        // }
-        userDB.doc(userId).update({
-            stocks : newStocks
-        })
+export const updateStock = (stockId, newStockInfo) => {
+    // return new Promise((resolve, reject) => {
+    //     // this part will br handled by droyder
+
+    // }
+
 }
 
 export const deleteStock = (userId, stockId) => {
