@@ -29,7 +29,7 @@ const NavBar = () => {
                     {
                         user ? (
                             <>
-                                <input className="form-control mr-sm-2" type="search" placeholder="Search Your Stock" aria-label="Search" value={searchValue} onChange={handleChange("searchBarValue")}/>
+                                <input className="form-control mr-sm-2" type="search" placeholder="Search Your StockID" aria-label="Search" value={searchValue} onChange={handleChange("searchBarValue")}/>
                                 <button className="btn btn-light my-2 my-sm-0 font-weight-bold searchButton" type="button" onClick={()=>addStockToWatchList()} >Add to Watch List</button>
                             </>
                         ) : (

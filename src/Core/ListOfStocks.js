@@ -78,19 +78,19 @@ const ListOfStocks = ({
                         <tbody>
                             <tr>
                                 <td>Buy</td>
-                                <td>190</td>
+                                <td>0</td>
                             </tr>
                             <tr>
                                 <td>Sell</td>
-                                <td>500</td>
+                                <td>0</td>
                             </tr>
                             <tr>
                                 <td>Stop Loss</td>
-                                <td>150</td>
+                                <td>0</td>
                             </tr>
                             <tr>
                                 <td>Trailing Stop Loss</td>
-                                <td>20%</td>
+                                <td>0%</td>
                             </tr>
                         </tbody>
                     </Popover.Content>
