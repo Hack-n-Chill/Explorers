@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react'
-import { getAllStocks, updateStockPrice, addStock, deleteStock } from '../config/UserAPICall';
+import { getAllStocks, updateStockPrice, addStock, deleteStock, getUserStock } from '../config/UserAPICall';
 import Footer from '../Core/Footer';
 import ListOfStocks from '../Core/ListOfStocks';
 import NavBar from '../Core/NavBar';
+import firebase from 'firebase';
 
 
 const UserDashBoard = () => {
     // this is user dashboard, that i need to make
     // i am considering that this user is an JSON object; which is being certain properties.
-    // const [user] = useAuthState(auth);
 
     const [stocks, setStocks] = useState([])
 
     useEffect(() => {
-        getAllStocks().then((stocks) => setStocks(stocks)
+        getUserStock(firebase.auth().currentUser.email ).then((stocks) => setStocks(stocks)
         ).catch(err => console.log(err))
     }, [])
     

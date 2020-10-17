@@ -103,21 +103,21 @@ const ListOfStocks = ({
         )
     }
 
-    const deleteThisStock = stockId => {
-        console.log("delete this stock method is invoked");
-        setLoading(true)
-        deleteStock(user.email, stockId).then(res => {
-            setLoading(false)
-            if (res.error) {
-                setError(res.error)
-            } else {
-                setSuccess(true)
-                // hoping that the row will delete it self, as the useEffect - > preload method will be invoked as soon as the state value gets changed.
-            }
-        }
-        ).catch(err => console.log(err)
-        )
-    }
+    // const deleteThisStock = stockId => {
+    //     console.log("delete this stock method is invoked");
+    //     setLoading(true)
+    //     deleteStock(user.email, stockId).then(res => {
+    //         setLoading(false)
+    //         if (res.error) {
+    //             setError(res.error)
+    //         } else {
+    //             setSuccess(true)
+    //             // hoping that the row will delete it self, as the useEffect - > preload method will be invoked as soon as the state value gets changed.
+    //         }
+    //     }
+    //     ).catch(err => console.log(err)
+    //     )
+    // }
 
 
     const showStockInfo = stockName => {
@@ -177,7 +177,7 @@ const ListOfStocks = ({
                                                         // checkIfAnyTriggerHit ?  : <Link to={`/user/update/${stock.name}`} className="btn btn-success">Update</Link> 
                                                     }
                                                 </td>
-                                                <td onClick={() => deleteThisStock(user.email, stock.id)}>
+                                                <td onClick={() => deleteStock(user.email, stock.id)}>
                                                     <span className="btn btn-danger">
                                                         Delete
                                                     </span>
