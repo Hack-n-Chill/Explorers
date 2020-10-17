@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { Redirect } from 'react-router-dom'
 import auth from '../config/auth'
-import { getStock, updateStock } from '../config/UserAPICall'
+import { getStock, updateStock, getUserStockInfo } from '../config/UserAPICall'
 import Base from '../Core/Base'
 
 // for every refresh, it's taking me into /user/dashboard ======> minor bug, will fix it today afternoon.
@@ -22,16 +22,18 @@ const UpdateStockInfo = ({ match }) => {
     const [error, setError] = useState(false)
 
     const preLoad = stockId => {
-        getStock(user.email, stockId).then(res => {
+        getUserStockInfo(user.email, stockId).then(res => {
             // considering res is going to store all the updates of the stock
+            console.log(res);
+            
             setStockInfo({
                 ...stockInfo,
-                name: res.name,
-                currentPrice: res.currentPrice,
+                name: "name",
+                currentPrice: "price",
                 sell: res.sell,
                 buy: res.buy,
                 stopLoss: res.stopLoss,
-                trailingStopLoss: res.trailingStopLoss
+                trailing: res.trailing
             })
         }
         ).catch(err => console.log(err))

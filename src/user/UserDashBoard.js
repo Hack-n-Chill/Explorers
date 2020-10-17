@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { getAllStocks, updateStockPrice, addStock, deleteStock, getUserStock } from '../config/UserAPICall';
+import { getAllStocks, updateStockPrice, addStock, deleteStock, getUserStocks } from '../config/UserAPICall';
 import Footer from '../Core/Footer';
 import ListOfStocks from '../Core/ListOfStocks';
 import NavBar from '../Core/NavBar';
@@ -13,7 +13,7 @@ const UserDashBoard = () => {
     const [stocks, setStocks] = useState([])
 
     useEffect(() => {
-        getUserStock(firebase.auth().currentUser.email ).then((stocks) => setStocks(stocks)
+        getUserStocks(firebase.auth().currentUser.email ).then((stocks) => setStocks(stocks)
         ).catch(err => console.log(err))
     }, [])
     
