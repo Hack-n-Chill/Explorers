@@ -22,12 +22,8 @@ const SignUp = () => {
         const userDB = firebase.firestore().collection("Users");
         userDB.doc(user.email).set({
         name: name,
-        userStocks: {
-            // MSFT: {
-            //     buyTarget: [],
-            //     sellTarget: []
-            // }
-        }
+        userStocks: [],
+        watchList : []
     })
     .then(function() {
         console.log("User added in Collection successfully!");

@@ -1,27 +1,39 @@
 import firebase from 'firebase';
 import request from 'request';
 
+const userDB = firebase.firestore().collection("Users");
+const stockDB = firebase.firestore().collection("Stocks");
+
 export const getAllStocks = () => {
     return new Promise((resolve, reject) => {
-        firebase.firestore().collection("Stocks")
-            .onSnapshot((snapshot) => {
+        stockDB.onSnapshot((snapshot) => {
                 // console.log('onSnapshot Called!')
                 let updatedData = snapshot.docs.map(doc => doc.data())
                 resolve(updatedData)
             }, reject)
     })
+            
 }
 
-export const getStock = (userId, stockId) => {
+export const getUserStock = (userId) => {
+
+    
+
     return new Promise((resolve, reject) => {
-        // this part will br handled by droyder
-    }
-    )
+    userDB.doc(userId).get()
+    .then(doc => {
+        let userStocks = doc.data().userStocks;  
+        stockDB.where('id','in',userStocks).onSnapshot((snapshot) => {
+            // console.log('onSnapshot Called!')
+            let updatedData = snapshot.docs.map(doc => doc.data())
+            resolve(updatedData)
+        }, reject)
+    })
+    .catch(function(error) {
+        console.log("Error getting documents: ", error);
+    });     
+    })
 }
-
-// const userId = firebase.auth().currentUser.email.toString();
-const userDB = firebase.firestore().collection("Users");
-const stockDB = firebase.firestore().collection("Stocks");
 
 /*
 export const updateStockPrice = (stockId, price) => {
@@ -111,6 +123,10 @@ export const addStock = (userID, stockId) => {
 }
 
 export const updateStock = () => {
+    
+}
+
+export const getStock = () => {
     
 }
 
