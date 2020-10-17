@@ -121,6 +121,11 @@ const ListOfStocks = ({
     // }
 
 
+    const showStockInfo = stockName => {
+        // console.log(stockName);
+        // this needs redirect me to the information page
+    }
+
     const findWhichToShow = (user, stock) => {
         const str = anyTriggerHit(user, stock)
         if (str) {
@@ -128,7 +133,7 @@ const ListOfStocks = ({
             return <span className="badge badge-info">{str}</span>
         }
         else
-            return <Link to={`/user/update/${stock.name}`} className="btn btn-success">Update</Link>
+            return <Link to={`/user/update/${stock.id}`} className="btn btn-success">Update</Link> 
     }
 
 

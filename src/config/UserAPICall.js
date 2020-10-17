@@ -15,9 +15,7 @@ export const getAllStocks = () => {
             
 }
 
-export const getUserStock = (userId) => {
-
-    
+export const getUserStocks = (userId) => {
 
     return new Promise((resolve, reject) => {
     userDB.doc(userId).get()
@@ -28,6 +26,25 @@ export const getUserStock = (userId) => {
             let updatedData = snapshot.docs.map(doc => doc.data())
             resolve(updatedData)
         }, reject)
+    })
+    .catch(function(error) {
+        console.log("Error getting documents: ", error);
+    });     
+    })
+}
+
+export const getUserStockInfo = (userId, stockId) => {
+    return new Promise((resolve, reject) => {
+    userDB.doc(userId).get()
+    .then(doc => {
+        // let watchList = doc.data().watchList;  
+        // for (let index = 0; index < watchList.length; index++) {
+        //     if (watchList[index].stockID === stockId) {
+        //         resolve(watchList[index]);
+        //         break;
+        //     }
+        // }
+        resolve(doc.data().watchList.find(e => e.id === stockId));
     })
     .catch(function(error) {
         console.log("Error getting documents: ", error);
@@ -104,9 +121,9 @@ export const addStock = (userID, stockId) => {
         userDB.doc(userID).update({
             watchList: firebase.firestore.FieldValue.arrayUnion(
                 {
-                    stockID: stockId,
-                    buyTarget: 0,
-                    sellTarget: 0,
+                    id: stockId,
+                    buy: 0,
+                    sell: 0,
                     stopLoss: 0,
                     trailing: 0,
                 }
