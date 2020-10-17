@@ -3,11 +3,12 @@ import { useAuthState } from 'react-firebase-hooks/auth'
 import { Link } from 'react-router-dom'
 import auth from '../config/auth'
 import NavBarLogo from '../Assets/logoMainWhite.svg'
+import { addStock } from '../config/UserAPICall'
+import firebase from 'firebase';
 
 const NavBar = () => {
     const [user] = useAuthState(auth)
     const searchButtonPressed = () => {
-        
     }
     
     return (
