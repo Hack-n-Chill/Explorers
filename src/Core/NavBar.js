@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom'
 import auth from '../config/auth'
 import NavBarLogo from '../Assets/logoMainWhite.svg'
 import { addStock } from '../config/UserAPICall'
-import { Alert } from 'react-bootstrap'
-import firebase from 'firebase';
 
 const NavBar = () => {
     const [user] = useAuthState(auth)
