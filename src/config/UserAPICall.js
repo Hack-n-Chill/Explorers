@@ -12,24 +12,23 @@ export const getAllStocks = () => {
                 resolve(updatedData)
             }, reject)
     })
-            
 }
 
 export const getUserStocks = (userId) => {
 
     return new Promise((resolve, reject) => {
-    userDB.doc(userId).get()
-    .then(doc => {
-        let userStocks = doc.data().userStocks;  
-        stockDB.where('id','in',userStocks).onSnapshot((snapshot) => {
-            // console.log('onSnapshot Called!')
-            let updatedData = snapshot.docs.map(doc => doc.data())
-            resolve(updatedData)
-        }, reject)
-    })
-    .catch(function(error) {
-        console.log("Error getting documents: ", error);
-    });     
+        userDB.doc(userId).get()
+        .then(doc => {
+            let userStocks = doc.data().userStocks;  
+            stockDB.where('id','in',userStocks).onSnapshot((snapshot) => {
+                // console.log('onSnapshot Called!')
+                let updatedData = snapshot.docs.map(doc => doc.data())
+                resolve(updatedData)
+            }, reject)
+        })
+        .catch(function(error) {
+            console.log("Error getting documents: ", error);
+        });     
     })
 }
 
@@ -143,9 +142,17 @@ export const updateStock = () => {
     
 }
 
-export const getStock = () => {
-    
-}
+export const getStock = (stockId) => {
+     return new Promise((resolve, reject) => {
+        stockDB.doc(stockId).get().then(doc => {
+            resolve(doc.data());
+            }, reject)
+        })
+        .catch(function(error) {
+            console.log("Error getting documents: ", error);
+        });
+             
+    }
 
 export const deleteStock = (userID, stockId) => {
     userDB.doc(userID).update({

@@ -13,9 +13,9 @@ const UpdateStockInfo = ({ match }) => {
         sell: 0.00,
         buy: 0.00,
         stopLoss: 0.00,
-        trailingStopLoss: 0.00,
+        trailing: 0.00,
     })
-    const { name, currentPrice, sell, buy, stopLoss, trailingStopLoss } = stockInfo;
+    const { name, currentPrice, sell, buy, stopLoss, trailing } = stockInfo;
     const [user] = useAuthState(auth)
     const [loading, setLoading] = useState(false)
     const [success, setSuccess] = useState(false)
@@ -25,18 +25,19 @@ const UpdateStockInfo = ({ match }) => {
         getUserStockInfo(user.email, stockId).then(res => {
             // considering res is going to store all the updates of the stock
             console.log(res);
-            const myStock=getAllStocks().then(stckArr => {
-                return stckArr.find(e=> e.id === stockId)
-            })
-            setStockInfo({
+            getStock(stockId).then(stock => {
+                console.log(stock);
+                setStockInfo({
                 ...stockInfo,
-                name: myStock.name,
-                currentPrice: myStock.currentPrice,
+                name: stock.name,
+                currentPrice: stock.currentPrice,
                 sell: res.sell,
                 buy: res.buy,
                 stopLoss: res.stopLoss,
                 trailing: res.trailing
             })
+            });
+            
         }
         ).catch(err => console.log(err))
     }
@@ -110,7 +111,7 @@ const UpdateStockInfo = ({ match }) => {
             <div className="form-group row">
                 <label for="exampleFormControlInput1" className="col-sm-2 col-form-label fnt">Trailing Stop Loss Trigger Price</label>
                 <div className="col-sm-10">
-                    <input type="text" className="form-control controlInput2" id="exampleFormControlInput1" placeholder={trailingStopLoss ? trailingStopLoss : 10} onChange={handleChange("trailingStopLoss")} />
+                    <input type="text" className="form-control controlInput2" id="exampleFormControlInput1" placeholder={trailing ? trailing : 10} onChange={handleChange("trailingStopLoss")} />
                 </div>
             </div>
             <div className="form-group row">
