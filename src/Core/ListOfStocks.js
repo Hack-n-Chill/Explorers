@@ -98,13 +98,19 @@ const ListOfStocks = ({
             if (res.error) {
                 setError(res.error)
             } else {
-                setSuccess(true) 
+                setSuccess(true)
                 // hoping that the row will delete it self, as the useEffect - > preload method will be invoked as soon as the state value gets changed.
             }
         }
         ).catch(err => console.log(err)
         )
     }
+
+    const showStockInfo = stockName => {
+        console.log(stockName);
+        // this needs redirect me to the information page
+    }
+
 
     return (
         <div className={className}>
@@ -133,7 +139,7 @@ const ListOfStocks = ({
                             </thead>
                             <tbody>
                                 {
-                                    stockArray.map((stock, index) => <tr>
+                                    stockArray.map((stock, index) => <tr onClick={() => showStockInfo(stock)}>
                                         <td>{stock.name}</td>
                                         <td className="font-weight-bold">{stock.currentPrice}</td>
                                         <td>{stock.previousPrice}</td>

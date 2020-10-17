@@ -106,7 +106,7 @@ const UpdateStockInfo = ({ match }) => {
             <div className="form-group row">
                 <label for="exampleFormControlInput1" className="col-sm-2 col-form-label">Trailing Stop Loss Trigger Price</label>
                 <div className="col-sm-10">
-                    <input type="text" className="form-control" id="exampleFormControlInput1" placeholder={trailingStopLoss ? trailingStopLoss : 10} onChange={handleChange("trailingStopLoss")} />
+                    <input type="text" className="form-control" id="exampleFormControlInput1" placeholder={`${trailingStopLoss ? trailingStopLoss : 10}%`} onChange={handleChange("trailingStopLoss")} />
                 </div>
             </div>
             <div className="form-group row">

@@ -31,6 +31,13 @@ export const deleteStock = (userId, stockId) => {
     }
     )
 }
+export const addStock = (userId, stockId) => {
+    return new Promise((resolve, reject) => {
+        // this part will br handled by droyder
+    }
+    )
+}
+
 
 
 
