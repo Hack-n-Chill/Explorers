@@ -17,12 +17,34 @@ const SignUp = () => {
 
     const { name, email, password, success, error } = values; // object destructured
 
+    const addUsersInCollection = (user,name) => {
+        // Create a doc of User collection in firestore
+        const userDB = firebase.firestore().collection("Users");
+        userDB.doc(user.email).set({
+        name: name,
+        userStocks: {
+            // MSFT: {
+            //     buyTarget: [],
+            //     sellTarget: []
+            // }
+        }
+    })
+    .then(function() {
+        console.log("User added in Collection successfully!");
+    })
+    .catch(function(error) {
+        console.error("Error writing in users collection: ", error);
+    });
+
+};
+
     const signUpWithGoogle = () => {
         const provider = new firebase.auth.GoogleAuthProvider();
         firebase.auth().signInWithPopup(provider).then(function (result) {
             // The signed-in user info.
-            console.log(result.user.displayName.toString() + " signed up successfully");
-            // ...
+            let user = result.user;
+            addUsersInCollection(user,user.displayName);
+            console.log(user.displayName.toString() + " signed up successfully");
             setValues({
                 ...values,
                 success: true
@@ -47,6 +69,7 @@ const SignUp = () => {
                 user.updateProfile({
                 displayName: name,
                 })
+                addUsersInCollection(res.user,name);
                 console.log(name + " signed up & logged in successfully");
                 setValues({
                     ...values,

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { getAllStocks } from '../config/UserAPICall';
+import { getAllStocks, updateStockPrice, addStock, deleteStock } from '../config/UserAPICall';
 import Footer from '../Core/Footer';
 import ListOfStocks from '../Core/ListOfStocks';
 import NavBar from '../Core/NavBar';
+
 
 const UserDashBoard = () => {
     // this is user dashboard, that i need to make
@@ -14,7 +15,8 @@ const UserDashBoard = () => {
     useEffect(() => {
         getAllStocks().then((stocks) => setStocks(stocks)
         ).catch(err => console.log(err))
-    },[] )
+    }, [])
+    
 
 /*     
     const makeNavBar = () =>
@@ -59,6 +61,18 @@ const UserDashBoard = () => {
             </div>
         )
     } 
+    const getStockPriceFromAPI = (id) => {
+        let url = 'https://finnhub.io/api/v1/quote?symbol=';
+        let token = '&token=bu4heof48v6p8t6ghn2g';
+        url = url + id + token;
+        let price = 0;
+        request(url, { json: true }, (err, res, body) => {
+            if (err) { return console.log(err); }
+            console.log(id, " => ", body.c);
+            price =  body.c;
+        });
+        return price;
+    }
 */
 
     return (
