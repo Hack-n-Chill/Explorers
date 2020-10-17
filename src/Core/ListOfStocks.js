@@ -174,7 +174,7 @@ const ListOfStocks = ({
                                                         // checkIfAnyTriggerHit ?  : <Link to={`/user/update/${stock.name}`} className="btn btn-success">Update</Link> 
                                                     }
                                                 </td>
-                                                <td onClick={() => deleteThisStock(stock.name)}>
+                                                <td onClick={() => deleteThisStock(user.email, stock.id)}>
                                                     <span className="btn btn-danger">
                                                         Delete
                                                     </span>

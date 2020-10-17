@@ -76,6 +76,7 @@ export const addStock = (userID, stockId) => {
                     let stockPrice = body.c;
                     console.log(doc.id, " => ", stockPrice);
                     stockDB.doc(stockId).set({
+                        id : stockId,
                         currentPrice: stockPrice,
                         previousPrice: stockPrice
                     }, { merge: true }).then(() => {

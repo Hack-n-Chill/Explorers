@@ -13,7 +13,7 @@ const NavBar = () => {
     const [searchValue, setSearchValue] = useState("")
 
     const addStockToWatchList = () => {
-        addStock(user.email, searchValue).then(res => setSuccess(true)).catch(err => alert(`${searchValue} Invalid stock symbol`))
+        addStock(user.email, searchValue.toUpperCase()).then(res => setSuccess(true)).catch(err => alert(`${searchValue} Invalid stock symbol`))
         setSearchValue("")
     }
     const handleChange = name => event => {
