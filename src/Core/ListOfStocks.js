@@ -1,9 +1,15 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, OverlayTrigger, Popover, Table } from 'react-bootstrap';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
 import auth from '../config/auth';
 import { deleteStock } from '../config/UserAPICall';
+import { anyTriggerHit } from './AlgorithmToSendNotification';
+
+const checkAllTriggers = (user, stock) => {
+    
+}
+
 
 const ListOfStocks = ({
     stockArray = [{
@@ -29,7 +35,14 @@ const ListOfStocks = ({
     const [loading, setLoading] = useState(false)
     const [success, setSuccess] = useState(false)
     const [error, setError] = useState("")
-
+    const [checkIfAnyTriggerHit, setCheckIfAnyTriggerHit] = useState("")
+    const [triggers, setTriggers] = useState({
+        buyPriceTrigerred: false,
+        sellPriceTrigerred: false,
+        stopLossTrigerred: false,
+        trailingStopLossTrigerred: false,
+    })
+    const { buyPriceTrigerred, sellPriceTrigerred, stopLossTrigerred, trailingStopLossTrigerred } = triggers
     const differenceAndPercentage = (currentValue, previousValue) => {
         const diff = currentValue - previousValue;
         const percentage = (diff / previousValue) * 100;
@@ -106,11 +119,19 @@ const ListOfStocks = ({
         )
     }
 
+
     const showStockInfo = stockName => {
         console.log(stockName);
         // this needs redirect me to the information page
     }
 
+    const findWhichToShow = (user, stock) => {
+        if (anyTriggerHit(user, stock))
+            return <span className="badge badge-info">{checkIfAnyTriggerHit}</span>
+        else
+            return <Link to={`/user/update/${stock.name}`} className="btn btn-success">Update</Link> 
+    }
+    
 
     return (
         <div className={className}>
@@ -148,7 +169,11 @@ const ListOfStocks = ({
                                             user ? <>
                                                 <td scope="col">{userPricesToTrigger(stock.name)}</td>
                                                 <td scope="col">
-                                                    <Link to={`/user/update/${stock.name}`} className="btn btn-success">Update</Link></td>
+                                                    {
+                                                        findWhichToShow(user, stock)
+                                                        // checkIfAnyTriggerHit ?  : <Link to={`/user/update/${stock.name}`} className="btn btn-success">Update</Link> 
+                                                    }
+                                                </td>
                                                 <td onClick={() => deleteThisStock(stock.name)}>
                                                     <span className="btn btn-danger">
                                                         Delete
