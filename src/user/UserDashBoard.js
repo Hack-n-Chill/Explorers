@@ -14,7 +14,7 @@ const UserDashBoard = () => {
     useEffect(() => {
         getAllStocks().then((stocks) => setStocks(stocks)
         ).catch(err => console.log(err))
-    }, )
+    },[] )
 
 /*     
     const makeNavBar = () =>
