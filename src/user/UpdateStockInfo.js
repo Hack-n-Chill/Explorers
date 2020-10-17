@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { Redirect } from 'react-router-dom'
 import auth from '../config/auth'
-import { getStock, updateStock, getUserStockInfo } from '../config/UserAPICall'
+import { getAllStocks, updateStock, getUserStockInfo } from '../config/UserAPICall'
 import Base from '../Core/Base'
 
 // for every refresh, it's taking me into /user/dashboard ======> minor bug, will fix it today afternoon.
