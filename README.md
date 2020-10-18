@@ -77,7 +77,7 @@ If you want to use the website just go to this [link](http://localhost:3000/)
 3. Add your code to that branch.
 4. Create a [pull request](http://localhost:3000/)
 
-<p align="center"> Made with :heart: and :coffee: by Aniket Kumar Ghosh, Dipangshu Roy, Priyangana Das
+<p align="center"> Made with :heart: and :coffee: by Aniket Kumar Ghosh [github id] (https://github.com/ak7550), Dipangshu Roy [github id](https://github.com/Droyder7), Priyangana Das[github id](https://github.com/PriyanganaD14)
 
 
 
