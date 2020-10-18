@@ -15,7 +15,7 @@ const UserDashBoard = () => {
     useEffect(() => {
         getUserStocks(firebase.auth().currentUser.email ).then((stocks) => setStocks(stocks)
         ).catch(err => console.log(err))
-    }, [])
+    })
     
 
 /*     

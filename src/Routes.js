@@ -1,11 +1,11 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Home from './Core/Home'
-import SignUp from './User/SignUp'
-import SignIn from './User/SignIn'
-import UserDashBoard from './User/UserDashBoard'
+import SignUp from './user/SignUp'
+import SignIn from './user/SignIn'
+import UserDashBoard from './user/UserDashBoard'
 import PrivateRoute from './config/PrivateRoute'
-import UpdateStockInfo from './User/UpdateStockInfo'
+import UpdateStockInfo from './user/UpdateStockInfo'
 
 const Routes = () => {
     return (
