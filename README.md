@@ -63,8 +63,15 @@ src="src\Assets\signIn.png" alt="Sign In Page">
 <img style="border-width: 0" width="400" height="250"
 src="src\Assets\userDashboard.png" alt="User Dashboard Page">
 </p>
+# How to run in a local machine
+
+1. Clone the repository
+2. Go into repository directory
+3. `npm install`
+4. `npm start`
 
 # How to use ?
+
 If you want to use the website just go to this [link](http://localhost:3000/)
 
 * If you are new here, please sing up first or if you already have an acoount then sing in (you can sing up/ in by google) to your  account.
