@@ -47,23 +47,33 @@ const UpdateStockInfo = ({ match }) => {
     }, [])
 
     const onSubmit = event => {
-        event.preventDefaults()
-        setLoading(true)
-        updateStock(user.email, match.params.stockId, stockInfo).then(data => {
-            console.log(`Data is: ` + JSON.stringify(data));
-            if (data.error) {
-                setLoading(false)
-                setError(data.error)
-            } else {
-                setStockInfo({
-                    ...stockInfo,
-                }) // update all the info
-                setSuccess(true)
-                setLoading(false)
-            }
-        }
-        ).catch(err => console.log(err)
-        )
+        // event.preventDefaults()
+        // setLoading(true)
+        // let watchListStock = {
+        //     watchList: {
+        //             id: match.params.stockId,
+        //             buy: buy,
+        //             sell: sell,
+        //             stopLoss: stopLoss,
+        //             trailing: trailing,
+        //         }
+        // }
+        // updateStock(user.email, match.params.stockId,buy,stopLoss,trailing);
+        // updateStock(user.email, match.params.stockId, stockInfo).then(data => {
+        //     console.log(`Data is: ` + JSON.stringify(data));
+        //     if (data.error) {
+        //         setLoading(false)
+        //         setError(data.error)
+        //     } else {
+        //         setStockInfo({
+        //             ...stockInfo,
+        //         }) // update all the info
+        //         setSuccess(true)
+        //         setLoading(false)
+        //     }
+        // }
+        // ).catch(err => console.log(err)
+        // )
     }
 
     const handleChange = name => event => {

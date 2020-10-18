@@ -138,8 +138,19 @@ export const addStock = (userID, stockId) => {
     })
 }
 
-export const updateStock = () => {
-    
+export const updateStock = (userId, id,buy,sell,stop,trail) => {
+    userDB.doc(userId).update({
+        watchList: [{
+            id: id,
+            buy: buy,
+            sell: sell,
+            stopLoss: stop,
+            trailing: trail
+        }]
+    }).then(d => {
+        console.log("Successfully update");
+        
+    }).catch(console.log);
 }
 
 export const getStock = (stockId) => {
