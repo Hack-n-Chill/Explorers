@@ -1,15 +1,24 @@
 import React from 'react'
-import './Base.css'
+import "./Base.css";
+import Footer from './Footer';
 
 const Base = ({
-    title, description, children
+    title,
+    description,
+    className,
+    children
 }) => {
     return (
-        <>
-            <h1 className="align-center ak">{title}</h1>
-            <h4 className="align-left">{description}</h4>
-            {children}
-        </>
+        <div>
+            <div className="mb-5 fixed-top">
+                <div className="text-center bg-dark">
+                    <div className="titleBar my-2 text-white">{title}</div>
+                    <p className="lead my-1 text-white my-2">{description}</p>
+                </div>
+                <div className={className}>{children}</div>
+            </div>
+            <Footer />
+        </div>
     )
 }
 

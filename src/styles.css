@@ -1,0 +1,85 @@
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+body{
+    background-color: #fff;
+}
+
+.navbar{
+    background-color: transparent;
+}
+
+.navbar-elements{
+    opacity: 1;
+}
+.navbar-elements:hover{
+    opacity: 1;
+}
+.navbar-elements:active{
+    opacity: 1;
+}
+
+.navbar-dark{
+    background-color: #20232a;
+}
+.dark{
+    background-color: #000;
+}
+.card-text{
+    font-size: 1.3em;
+    line-height: 2em;
+    font-style: oblique;
+}
+.card-title {
+    font-size: 1.4em;
+}
+.card-header{
+    font-size: 1.2em;
+}
+.titleBar{
+    font-size: 2.2em;
+}
+
+.searchButton{
+    font-size: 0.8em;
+}
+.hvr:hover{
+    font-weight: bolder;
+    
+}
+
+.controlInput2 {
+   transition: width 0.4s ease-in-out;
+  }
+  
+  .controlInput2:focus {
+    background-color: lightgray;
+    border: 1.5px solid #555;
+    width: 100%;
+    font-size: large;
+    font-style: oblique;
+  }
+  .fnt{
+      font-weight: bolder;
+      font-size: medium;
+  }
+  
+  .img-hvr:hover{
+    -ms-transform: scale(1.5); /* IE 9 */
+    -webkit-transform: scale(1.5); /* Safari 3-8 */
+    transform: scale(1.2); 
+  }
+  a{
+    color: black;
+    text-decoration: none;
+  }
+  a:hover{
+      /* font-weight: bolder; */
+      color:  black;
+  }
+  

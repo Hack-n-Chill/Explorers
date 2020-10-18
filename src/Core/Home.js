@@ -1,23 +1,34 @@
-import React, {useState} from 'react'
-import Base from './Base'
+import React, { useEffect, useState } from 'react'
+import '../styles.css'
+import { Redirect } from 'react-router-dom';
+import NavBar from './NavBar';
+import ListOfStocks from './ListOfStocks';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../config/auth';
+import Footer from './Footer';
+import { getAllStocks } from '../config/UserAPICall';
 
 const Home = () => {
-    const [count, setCount] = useState(0);
 
-    const rightSideClicked = e => {
-        console.log("right side is clicked");
-        setCount(count + 1);
-    }
-
-
+    const [stocks, setStocks] = useState([])
+    const [user] = useAuthState(auth)
+    useEffect(() => {
+        getAllStocks().then((stocks) => setStocks(stocks)
+        ).catch(err => console.log(err))
+    }, [])
     
     return (
-        <Base title="Home Page" decription="This is our Home Page" >
-            <div className="col bg-dark text-white">
-                <div className="row btn btn-success">left side</div>
-                <div className="row btn btn-danger" onClick={rightSideClicked} >right side is clicked {count} time{count==1?"": "s"}</div>
-            </div>
-        </Base>
+        <div>
+            <NavBar />
+            {user ?
+                <Redirect to="/user/dashboard" />
+                :
+                < div >
+                    <ListOfStocks className="mx-3" stockArray={stocks} />
+                </div>
+            }
+            <Footer />
+        </div>
     )
 }
 

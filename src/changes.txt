@@ -1,0 +1,26 @@
+lots of changes are done over here that i can't tell in a single commit
+
+sing up & signin are done
+private user route are created
+user dashboard prototype has been created
+
+
+considering user is a JSON object, I have made a loop to fetch his watchlist
+
+now it's tough for me to work with without having a proper idea regarding  user JSON object
+
+
+
+
+things to do:--
+
+only main thing that I have to do now is to work on user dashboard file
+and api call
+
+user dashboard should have buttons to --- > add and remove a watchlist
+                                      ---- > add and remove a stock present in a specific watchlist
+                                      ---- > add or remove his titeria of notification regarding a particular stock
+                                      ---- > apply the algorithm
+                                      ---- > give the notification at a certain time
+
+    I must need to know the structure of user JSON object
