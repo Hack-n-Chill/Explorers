@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { Redirect } from 'react-router-dom'
 import auth from '../config/auth'
-import { getStock, updateStock } from '../config/UserAPICall'
+import { getStock, updateStock, getUserStockInfo } from '../config/UserAPICall'
 import Base from '../Core/Base'
 
 // for every refresh, it's taking me into /user/dashboard ======> minor bug, will fix it today afternoon.
@@ -13,26 +13,31 @@ const UpdateStockInfo = ({ match }) => {
         sell: 0.00,
         buy: 0.00,
         stopLoss: 0.00,
-        trailingStopLoss: 0.00,
+        trailing: 0.00,
     })
-    const { name, currentPrice, sell, buy, stopLoss, trailingStopLoss } = stockInfo;
+    const { name, currentPrice, sell, buy, stopLoss, trailing } = stockInfo;
     const [user] = useAuthState(auth)
     const [loading, setLoading] = useState(false)
     const [success, setSuccess] = useState(false)
     const [error, setError] = useState(false)
 
     const preLoad = stockId => {
-        getStock(user.email, stockId).then(res => {
+        getUserStockInfo(user.email, stockId).then(res => {
             // considering res is going to store all the updates of the stock
-            setStockInfo({
+            console.log(res);
+            getStock(stockId).then(stock => {
+                console.log(stock);
+                setStockInfo({
                 ...stockInfo,
-                name: res.name,
-                currentPrice: res.currentPrice,
+                name: stock.name,
+                currentPrice: stock.currentPrice,
                 sell: res.sell,
                 buy: res.buy,
                 stopLoss: res.stopLoss,
-                trailingStopLoss: res.trailingStopLoss
+                trailing: res.trailing
             })
+            });
+            
         }
         ).catch(err => console.log(err))
     }
@@ -49,7 +54,7 @@ const UpdateStockInfo = ({ match }) => {
             if (data.error) {
                 setLoading(false)
                 setError(data.error)
-            } else { 
+            } else {
                 setStockInfo({
                     ...stockInfo,
                 }) // update all the info
@@ -106,12 +111,12 @@ const UpdateStockInfo = ({ match }) => {
             <div className="form-group row">
                 <label for="exampleFormControlInput1" className="col-sm-2 col-form-label fnt">Trailing Stop Loss Trigger Price</label>
                 <div className="col-sm-10">
-                    <input type="text" className="form-control controlInput2" id="exampleFormControlInput1" placeholder={trailingStopLoss ? trailingStopLoss : 10} onChange={handleChange("trailingStopLoss")} />
+                    <input type="text" className="form-control controlInput2" id="exampleFormControlInput1" placeholder={trailing ? trailing : 10} onChange={handleChange("trailingStopLoss")} />
                 </div>
             </div>
             <div className="form-group row">
                 <button type="submit" onClick={onSubmit} className="col-12 btn btn-lg btn-success mb-3  ">
-                  <div className="hvr">Update Triggers</div>  
+                    <div className="hvr">Update Triggers</div>
                 </button>
             </div>
         </form>

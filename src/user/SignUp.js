@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import SignUpImage from '../Assets/google-sign-in.png'
+import SignUpImage from '../Assets/google-sign-up.png'
 import firebase from 'firebase/app';
 import Base from '../Core/Base'
 import { Link, Redirect } from 'react-router-dom';
@@ -22,12 +22,8 @@ const SignUp = () => {
         const userDB = firebase.firestore().collection("Users");
         userDB.doc(user.email).set({
         name: name,
-        userStocks: {
-            // MSFT: {
-            //     buyTarget: [],
-            //     sellTarget: []
-            // }
-        }
+        userStocks: [],
+        watchList : []
     })
     .then(function() {
         console.log("User added in Collection successfully!");

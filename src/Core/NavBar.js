@@ -5,7 +5,6 @@ import auth from '../config/auth'
 import NavBarLogo from '../Assets/logoMainWhite.svg'
 import { addStock } from '../config/UserAPICall'
 import { Alert } from 'react-bootstrap'
-import firebase from 'firebase';
 
 const NavBar = () => {
     const [user] = useAuthState(auth)
@@ -13,7 +12,7 @@ const NavBar = () => {
     const [searchValue, setSearchValue] = useState("")
 
     const addStockToWatchList = () => {
-        addStock(user.email, searchValue).then(res => setSuccess(true)).catch(err => alert(`${searchValue} Invalid stock symbol`))
+        addStock(user.email, searchValue.toUpperCase()).then(res => setSuccess(true)).catch(err => alert(`${searchValue} Invalid stock symbol`))
         setSearchValue("")
     }
     const handleChange = name => event => {
@@ -30,7 +29,7 @@ const NavBar = () => {
                     {
                         user ? (
                             <>
-                                <input className="form-control mr-sm-2" type="search" placeholder="Search Your Stock" aria-label="Search" value={searchValue} onChange={handleChange("searchBarValue")}/>
+                                <input className="form-control mr-sm-2" type="search" placeholder="Search Your StockID" aria-label="Search" value={searchValue} onChange={handleChange("searchBarValue")}/>
                                 <button className="btn btn-light my-2 my-sm-0 font-weight-bold searchButton" type="button" onClick={()=>addStockToWatchList()} >Add to Watch List</button>
                             </>
                         ) : (
