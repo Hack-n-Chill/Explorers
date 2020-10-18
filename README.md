@@ -1,68 +1,85 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p align="center">
+<img style="border-width: 0" width="300" height="300"
+src="src\Assets\logo.png" alt="Shares Notifier logo">
+</p>
 
-## Available Scripts
+# Shares Notifier
+A website where you get unlimited notifications of real time stock prices of your favourite stocks by email or push notifications on your smartphone and PC.
 
-In the project directory, you can run:
+# Motivations
+Create this website mainly for tracking the current state of stocks,calculating the profit or loss for whom are not available to check stock market prices all time.
 
-### `npm start`
+# Tech Stack / Tools / Frameworks / Languages
+**Build with**
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1.JavaScript
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+2.Node JS
 
-### `npm test`
+3.[Firebase](https://firebase.google.com/docs/)
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+4.[React](https://reactjs.org/docs/getting-started.html)
 
-### `npm run build`
+5.[API](https://finnhub.io/docs/api)
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+6.[npm](https://www.npmjs.com/package/npm-docs)
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+7.Bootstrap
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Code Style
+Just follow the
 
-### `npm run eject`
+1.[JavaScript style guides](https://google.github.io/styleguide/jsguide.html)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+2.[React style guide](https://react-styleguidist.js.org/)
+by google
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Screenshots
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Home Page 
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+<p align="center">
+<img style="border-width: 0" width="400" height="250"
+src="src\Assets\home.png" alt="Home Page">
+</p>
 
-## Learn More
+### Sing Up Page
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<p align="center">
+<img style="border-width: 0" width="400" height="250"
+src="src\Assets\signUp.png" alt="Sign Up Page">
+</p>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Sing In Page
 
-### Code Splitting
+<p align="center">
+<img style="border-width: 0" width="400" height="250"
+src="src\Assets\signIn.png" alt="Sign In Page">
+</p>
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+### User Dashboard
 
-### Analyzing the Bundle Size
+<p align="center">
+<img style="border-width: 0" width="400" height="250"
+src="src\Assets\userDashboard.png" alt="User Dashboard Page">
+</p>
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+# How to use ?
+If you want to use the website just go to this [link](http://localhost:3000/)
 
-### Making a Progressive Web App
+* If you are new here, please sing up first or if you already have an acoount then sing in (you can sing up/ in by google) to your  account.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+* Then search your favourite stocks and update details. You can set Sell Trigger Price, Buy Trigger Price, Stop Loss trigger price, Trilling Stop Loss Trigger Price by Update Triggers button.
 
-### Advanced Configuration
+# How to contribute ?
+1. Fork the project.
+2. Create a different branch.
+3. Add your code to that branch.
+4. Create a [pull request](http://localhost:3000/)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+<p align="center"> Made with :heart: and :coffee: by Aniket Kumar Ghosh [github id] (https://github.com/ak7550), Dipangshu Roy [github id](https://github.com/Droyder7), Priyangana Das[github id](https://github.com/PriyanganaD14) </p>
 
-### Deployment
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
 
-### `npm run build` fails to minify
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
