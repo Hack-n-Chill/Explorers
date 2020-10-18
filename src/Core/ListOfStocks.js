@@ -170,7 +170,12 @@ const ListOfStocks = ({
                                     stockArray.map((stock, index) =>
                                         <tr>
                                             <a href={`https://in.finance.yahoo.com/quote/${stock.id}/analysis/`} target="_blank" className="">
-                                                <td>{stock.name}</td></a>
+                                                <td>
+                                                    {stock.name}
+                                                    {
+                                                        <span>{` (${stock.id})`}</span>
+                                                    }
+                                                </td></a>
                                             <td className="font-weight-bold">{stock.currentPrice}</td>
                                             <td>{stock.previousPrice}</td>
                                             <td>{differenceAndPercentage(stock.currentPrice, stock.previousPrice)}</td>
